@@ -1,0 +1,51 @@
+<nav>
+<div class="nav-wrapper">
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="container">
+        <a href="/" class="brand-logo">Matcha</a>
+
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="/messages">Messages <span class="new badge">4</span></a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{user_data.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="/profile/{{user_data.username}}">My profile</a></li>
+            <li><a href="#">My Connections</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Change password</a></li>
+            <li><a cls href="/logout">logout</a></li>
+        </ul>
+
+        <ul class="side-nav" id="mobile-demo">
+            <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://placeimg.com/420/420/nature">
+                </div>
+                <a href="#!user"><img class="circle" src="https://placeimg.com/420/420/people"></a>
+                {{#if user_data}}
+                <a href="#!name">
+                    <span class="white-text nav_user_name">
+                        <span class="font-slim">{{user_data.firstname}} {{user_data.lastname}}</span> - {{user_data.username}}
+                    </span>
+                </a>
+                <a href="#!email"><span class="white-text email">{{user_data.email}}</span></a>
+                {{/if}}
+            </div>
+            </li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/messages">Messages <span class="new badge right">4</span></a></li>
+            <li><a href="/profile/{{user_data.username}}">My profile</a></li>
+            <li><a href="#">My Connections</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Change password</a></li>
+            <li><a href="/logout">logout <i class="material-icons right" style="margin: 0">power_settings_new</i></a></li>
+            <li class="divider"></li>
+            <li><a class="subheader center-align"><small class="text-mute">author: Mpho Kgosisejo</small></a></li>
+        </ul>
+    </div>
+</div>
+</nav>

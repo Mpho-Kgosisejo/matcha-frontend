@@ -1,0 +1,111 @@
+/*
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+*/
+
+body{
+  color: #525252;
+}
+
+.banner{
+  padding: 55px 0;
+}
+
+.banner.home{
+  background: #efefef;
+}
+
+.tab-content{
+  padding: 10px 0;
+}
+
+input{
+  margin-bottom: 10px;
+}
+
+.btn-block{
+  width: 100%;
+}
+
+.text-mute{
+  color: rgb(150, 150, 150);
+}
+
+.alert{
+  width: 100%;
+  padding: 15px;
+  background: #eee;
+  color: rgb(105, 105, 105);
+  margin-bottom: 15px;
+  border-top: 1px solid rgb(105, 105, 105);
+  border-bottom: 1px solid rgb(105, 105, 105);
+}
+
+.alert.alert-danger{
+  background: rgb(255, 220, 220);
+  color: rgb(212, 112, 112);
+  border-top: 1px solid rgb(212, 112, 112);
+  border-bottom: 1px solid rgb(212, 112, 112);
+}
+
+.alert.alert-success{
+  color: rgb(113, 192, 92);
+  background: rgb(212, 240, 209);
+  border-top: 1px solid rgb(113, 192, 92);
+  border-bottom: 1px solid rgb(113, 192, 92);
+}
+
+.chip-block{
+  width: 100%;
+}
+
+.chip.chip-danger{
+  color: rgb(212, 112, 112);
+  background: rgb(255, 220, 220);
+}
+
+.chip.chip-success{
+  color: rgb(113, 192, 92);
+  background: rgb(212, 240, 209);
+}
+
+#form_cnfrm_reg{
+  display: none;
+}
+
+.font-slim{
+  font-weight: 100;
+}
+
+nav{
+  margin-bottom: 15px;
+}
+
+.nav_user_name{
+  font-size: 1.25em;
+}
+
+h1, h2, h3, h4, h5{
+  margin-top: 0;
+}
+
+hr{
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0; 
+}
+
+.side-nav .divider{
+  margin: 0;
+}
+
+/*.small-font{
+  font-size: 110%;
+}*/
