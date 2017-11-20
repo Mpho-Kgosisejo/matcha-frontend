@@ -32,7 +32,7 @@ $(document).ready(function(){
             mail = itemId('reg_email').value;
             pass = itemId('reg_password').value;
 
-            /*if (!fn)
+            if (!fn)
                 error += 'Firstname can not be empty;';
             if (!ln)
                 error += 'Lastname can not be empty;';
@@ -53,14 +53,18 @@ $(document).ready(function(){
             else{
                 if (pass.length < 6)
                     error += 'Password should be 6 Chars. min.;';
+                if (pass.length > 16)
+                    error += 'Password should be 16 Chars. max.;';
             }
 
             errors = error.split(";");
             itemId('reg_err_mssg').innerHTML = '';
             errors.forEach(function(element) {
-                if (element.trim())
+                if (element.trim()){
+                    autoScroll('#tabs-swipe-demo');
                     itemId('reg_err_mssg').innerHTML += htmlChip('danger', element);
-            });*/
+                }
+            });
             
             if (!error)
                 register(fn, ln, un, mail, pass);

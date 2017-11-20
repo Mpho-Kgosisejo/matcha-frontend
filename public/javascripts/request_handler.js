@@ -1,4 +1,4 @@
-var api = 'http://127.0.0.1:8080/matcha-api/public';
+var api = 'http://127.0.0.1:8383/matcha/public';
 
 function    login_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
@@ -23,6 +23,7 @@ function    login_request(_url, method, formdata){
 
                     document.location.reload(true);
                 }else{
+                    autoScroll('#tabs-swipe-demo');
                     itemId('login_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
@@ -77,6 +78,7 @@ function    register_request(_url, method, formdata){
                     }else{
                         itemId('reg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                     }
+                    autoScroll('#tabs-swipe-demo');
                 }catch(e){
                     console.log(e);
                 }

@@ -2,7 +2,7 @@
 <div class="nav-wrapper">
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <div class="container">
-        <a href="/" class="brand-logo">Matcha</a>
+        <a href="/" class="brand-logo">Matcha <!--<span class="font-slim">- {{title}}</span>--></a>
 
         <ul class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
@@ -13,7 +13,7 @@
 
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="/profile/{{user_data.username}}">My profile</a></li>
-            <li><a href="#">My Connections</a></li>
+            <li><a href="/connections">My Connections</a></li>
             <li class="divider"></li>
             <li><a href="#">Change password</a></li>
             <li><a cls href="/logout">logout</a></li>
@@ -39,7 +39,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/messages">Messages <span class="new badge right">4</span></a></li>
             <li><a href="/profile/{{user_data.username}}">My profile</a></li>
-            <li><a href="#">My Connections</a></li>
+            <li><a href="/connections">My Connections</a></li>
             <li class="divider"></li>
             <li><a href="#">Change password</a></li>
             <li><a href="/logout">logout <i class="material-icons right" style="margin: 0">power_settings_new</i></a></li>

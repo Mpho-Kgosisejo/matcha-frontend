@@ -53,3 +53,9 @@ function getCookie(key){
     });
     return (null);
 }
+
+function autoScroll(element){
+	$('html, body').animate({
+		scrollTop: $(element).offset().top
+	}, 1000);
+}

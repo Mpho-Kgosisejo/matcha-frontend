@@ -1,4 +1,5 @@
 var request = require('request');
+var empty = require('is-empty');
 
 if (typeof localStorage === "undefined" || localStorage === null) {
     var LocalStorage = require('node-localstorage').LocalStorage;
@@ -6,11 +7,13 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 }
 
 module.exports = {
-    redirect: function(req, res, next, locate, title = 'Matcha'){
-        _cookies = req.cookies;
+    redirect: function(req, res, next, locate, title = 'Matcha', data = undefined, error = undefined){
+        _cookies = JSON.stringify(req.cookies);
+        _cookies = JSON.parse(_cookies);
         
-        if (_cookies.hasOwnProperty('login_session')){
-          formdata = data = {session: _cookies.login_session, isSession: 1};
+        if (!empty(_cookies) && _cookies.hasOwnProperty('login_session')){
+        //if (!empty(_cookies) && Object.hasOwnProperty(_cookies, 'login_session')){
+          formdata = {session: _cookies.login_session, isSession: 1};
       
           request.post(localStorage.getItem('api_url') + '/login', {form: formdata}, function(err, resp, body){
             //console.log(body);
@@ -23,7 +26,7 @@ module.exports = {
                 if (body.response.state == 'true'){
                   //console.log(body.data);
       
-                  res.render(locate, {title: title, user_data: body.data});
+                  res.render(locate, {title: title, user_data: body.data, data: data, error: error});
                 }else{
                   res.cookie('login_session', '');
                   res.render('index', {title: 'Matcha'});
