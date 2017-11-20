@@ -5,6 +5,16 @@ $(document).ready(function(){
     $('.carousel.carousel-slider').carousel({fullWidth: true});
     //$('.carousel').carousel('next');
     //$('.carousel').carousel('prev');
+    $('select').material_select();
+    $('input#input_text').characterCounter();
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 80,
+        /*today: 'Today',*/
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelctet: true
+    });
     $('.dropdown-button').dropdown({
         inDuration: 300,
         outDuration: 225,

@@ -3,18 +3,12 @@
 <div class="container">
     <div class="row">
         <div class="col l7 s12">
-            {{#ifSame 1 1}}
-                ok
-            {{else}}
-                OK
-            {{/ifSame}}
-
             {{#if data}}
                 <div class="card profile-container">
                     <div class="profile">
                         <div class="bg"></div>
                         <div class="info">
-                            <img src="https://placeimg.com/640/480/people" alt="">-->
+                            <img src="https://placeimg.com/640/480/people" alt="">
                             <span class="card-title names">
                                 {{data.firstname}}, {{data.lastname}}<br>
                                 <span>{{data.username}}</span>
@@ -23,25 +17,29 @@
                         <!--<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
                         <a class='dropdown-button btn profile-menu-btn' href='#' data-activates='profile-menu'><i class="material-icons">add</i></a>
                         <ul id='profile-menu' class='dropdown-content'>
-                            <li><a href="#!">Connect</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#!">Report</a></li>
-                            <li><a href="#!">Block</a></li>
+                            {{#ifSame user_data.id data.id}}
+                                <li><a href="./{{user_data.username}}/update">Update Profile</a></li>
+                            {{else}}
+                                <li><a href="#!">Connect</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#!">Report</a></li>
+                                <li><a href="#!">Block</a></li>
+                            {{/ifSame}}
                         </ul>
                     </div>
                     <!--<div class="row" style="margin: 0">-->
                         <ul class="tabs">
-                            <li class="tab _col _s4"><a href="#photos">Photos</a></li>
-                            <li class="tab _col _s4"><a href="#about">About</a></li>
-                            <li class="tab _col _s4"><a href="#test3">More</a></li>
+                            <li class="tab _colS _s4S"><a href="#photos">Photos</a></li>
+                            <li class="tab _colS _s4S"><a href="#about">About</a></li>
+                            <li class="tab _colS _s4S"><a href="#test3">More</a></li>
                         </ul>
                     <!--</div>-->
                     <div class="card-content">
                         <div id="about" >
                             <p><b>Gender</b>: <br> {{data.gender}}</p>
                             <p><b>Date of Birth</b>: <br> {{data.date_of_birth}}</p>
-                            <p><b>Sexual Preference</b>: <br> {{data.sexual_preference:}}</p>
-                            <p><b>Biography</b>: <br> {{data.biography::}}</p>
+                            <p><b>Sexual Preference</b>: <br> {{data.sexual_preference}}</p>
+                            <p><b>Biography</b>: <br> {{data.biography}}</p>
                         </div>
                         <div id="photos" >
                             <div class="carousel carousel-slider">

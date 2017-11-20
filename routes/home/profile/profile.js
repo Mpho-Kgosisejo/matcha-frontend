@@ -35,4 +35,59 @@ router.get('/profile/:username', function(req, res, next) {
     });
 });
 
+router.get('/profile/:username/update', function(req, res, next) {
+    _cookies = JSON.stringify(req.cookies);
+    _cookies = JSON.parse(_cookies);
+
+    formdata = {session: _cookies.login_session};
+    if (empty(_cookies) && !_cookies.hasOwnProperty('login_session')){
+        //With error mssg (cookie: pop_error)
+        res.redirect('/');
+        return ;
+    }
+
+    request.get(localStorage.getItem('api_url') + '/info', {form: formdata}, function(err, resp, body){
+        try{
+            body_loginUser = JSON.parse(body);
+        
+            if (body_loginUser.hasOwnProperty('response')){
+                data = body_loginUser.data;
+
+                var formdata = {username: req.params.username};
+                
+                    request.get(localStorage.getItem('api_url') + '/profile', {form: formdata}, function(err, resp, body){
+                        try{
+                            body = JSON.parse(body);
+                        
+                            if (body.hasOwnProperty('response')){
+                                data = body.data;
+
+                                if (body.data.id === body_loginUser.data.id){
+                                    redirect.redirect(req, res, next, 'home/profile/update', 'Update Profile', data, body.response.message);
+                                    return ;
+                                }
+                                else
+                                    res.redirect('/');
+                                return ;
+                            }else
+                                res.redirect('/');
+                            return ;
+                        }catch(e){
+                            res.redirect('/');
+                            return ;
+                        }
+                    });
+                //redirect.redirect(req, res, next, 'home/profile/profile', 'Profile', data, body_loginUser.response.message);
+            }else
+                res.redirect('/');
+            return ;
+                //(cookie: pop_error)
+        }catch(e){
+            res.redirect('/');
+        return ;
+        }
+    });
+    //res.redirect('/');
+});
+
 module.exports = router;

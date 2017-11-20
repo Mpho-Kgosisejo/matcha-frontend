@@ -1,4 +1,4 @@
-var api = 'http://127.0.0.1:8383/matcha/public';
+var api = 'http://127.0.0.1:8383/my_sites/matcha/public';
 
 function    login_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
