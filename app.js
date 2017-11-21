@@ -32,25 +32,6 @@ app.set('view engine', 'hbs');
 //Registering partials
 hbss.registerPartials(__dirname + '/views/partials/');
 
-/*hbss.registerHelper('ifSame', (val1, val2, options) => {
-  if (val1 === val2)
-    return (options.fn(this));
-  else
-    return (options.inverse(this));
-});*/
-
-/*hbss.registerHelper('xif', function (expression, options) {
-  return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
-});*/
-
-/*hbss.registerHelper('ifv', function (conditional, options) {
-  if (options.hash.value === conditional) {
-    return options.fn(this)
-  } else {
-    return options.inverse(this);
-  }
-});*/
-
 var _this = hbs.create({
   helpers:{
     ifv: function (conditional, options) {
@@ -121,6 +102,6 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage('./scratch');
 }
 
-localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha/public');
+localStorage.setItem('api_url', 'http://localhost:8383/my_sites/matcha/public');
 
 module.exports = app;

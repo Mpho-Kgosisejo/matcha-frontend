@@ -1,4 +1,5 @@
-var api = 'http://127.0.0.1:8080/matcha/public';
+localStorage.setItem('api_url', 'http://localhost:8383/my_sites/matcha');
+var api = (localStorage.getItem('api_url') + '/public');
 
 function    login_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
@@ -168,15 +169,11 @@ function update_profile_request(_url, method, formdata){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
-                console.log(body);
 
                 if (body.response.state == 'true'){
-                    //console.log(body);
-                    //console.log('OK');
 
                     Materialize.toast(body.response.message, 3000, 'rounded');
                     itemId('update_reporter').innerHTML = '';
@@ -185,10 +182,50 @@ function update_profile_request(_url, method, formdata){
                     itemId('update_reporter').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                //console.log(e);
                 autoScroll('.update-container');
                 itemId('update_reporter').innerHTML = htmlAlert('danger', 'Could not update profile at this time, try again later.');
             }
+        }
+    }
+    _http.send(formdata);
+}
+
+function upload_file_request(_url, method, formdata, name, previewId){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    data = body.data;
+                    src = localStorage.getItem('api_url') + '/' + data.url;
+                    itemId(previewId).src = src;
+
+                    Materialize.toast(name + ' was uploaded', 3000, 'rounded');
+                    itemId('upload_profile_images_reporter').innerHTML = '';
+                    return ;
+                }else{
+                    autoScroll('.upload-profile-images');
+                    itemId('upload_profile_images_reporter').innerHTML = htmlAlert('danger', body.response.message);
+                }
+            }catch(e){
+                console.log('Catch', e);
+                autoScroll('.upload-profile-images');
+                itemId('upload_profile_images_reporter').innerHTML = htmlAlert('danger', 'Could not upload '+ name +' photo at this time, try again later.');
+            }
+            Materialize.toast('Upload faild!', 3000, 'rounded');
         }
     }
     _http.send(formdata);
