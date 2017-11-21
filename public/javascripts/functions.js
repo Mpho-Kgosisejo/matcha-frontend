@@ -59,3 +59,38 @@ function autoScroll(element){
 		scrollTop: $(element).offset().top
 	}, 1000);
 }
+
+function validate_isempty(name, element){
+    if (!element){
+        error = name + ' can not be empty.;';
+        return (error);
+    }
+    return ('');
+}
+
+function validate_ifless(name, num, element){
+    if (element.length > num){
+        error = name + ' should be '+ num +' Characters maximum.;';
+        return (error);
+    }
+    return ('');
+}
+
+function validate_ifgreater(name, num, element){
+    if (element.length > num){
+        error = name + ' should be '+ num +' Characters minimum.;';
+        return (error);
+    }
+    return ('');
+}
+
+function put_errors(element_id, move_to, error){
+    errors = error.split(";");
+    itemId(element_id).innerHTML = '';
+    errors.forEach(function(element) {
+        if (element.trim()){
+            autoScroll(move_to);
+            itemId(element_id).innerHTML += htmlChip('danger', element);
+        }
+    });
+}

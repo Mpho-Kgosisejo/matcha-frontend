@@ -1,4 +1,4 @@
-var api = 'http://127.0.0.1:8383/my_sites/matcha/public';
+var api = 'http://127.0.0.1:8080/matcha/public';
 
 function    login_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
@@ -154,7 +154,7 @@ function confirm_reg_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function userinfo_request(){
+function update_profile_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -168,18 +168,26 @@ function userinfo_request(){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
+            console.log(_http.responseText);
+
             try{
                 body = JSON.parse(_http.responseText);
                 console.log(body);
-                
+
                 if (body.response.state == 'true'){
-                    console.log(body);
-                    console.log('OK');
+                    //console.log(body);
+                    //console.log('OK');
+
+                    Materialize.toast(body.response.message, 3000, 'rounded');
+                    itemId('update_reporter').innerHTML = '';
                 }else{
-                    console.log('error');
+                    autoScroll('.update-container');
+                    itemId('update_reporter').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
+                autoScroll('.update-container');
+                itemId('update_reporter').innerHTML = htmlAlert('danger', 'Could not update profile at this time, try again later.');
             }
         }
     }

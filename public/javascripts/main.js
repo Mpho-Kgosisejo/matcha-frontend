@@ -13,7 +13,8 @@ $(document).ready(function(){
         /*today: 'Today',*/
         clear: 'Clear',
         close: 'Ok',
-        closeOnSelctet: true
+        closeOnSelect: true,
+        format: 'yyyy-mm-dd'
     });
     $('.dropdown-button').dropdown({
         inDuration: 300,

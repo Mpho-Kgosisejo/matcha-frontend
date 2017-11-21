@@ -70,4 +70,27 @@ $(document).ready(function(){
                 register(fn, ln, un, mail, pass);
         });
     }
+
+    if (itemId('update_profile')){
+        itemId('update_profile').addEventListener('click', function(e){
+            e.preventDefault();
+
+            error = '';
+            fn = itemId('firstname').value;
+            ln = itemId('lastname').value;
+            //email = itemId('email').value;
+            sex = itemId('gender').value;
+            dob = itemId('dob').value;
+            sexual_preference = itemId('sexual_preference').value;
+            bio = itemId('bio').value;
+            session = itemId('session').value;
+
+            error += validate_isempty('Firstname', fn);
+            error += validate_isempty('Lastname', ln);
+
+            put_errors('update_reporter', '.update-container', error);
+            if (!error)
+            update_profile(session, fn, ln, sex, dob, sexual_preference, bio);
+        });
+    }
 });

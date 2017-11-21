@@ -28,6 +28,20 @@ function confirm_reg(code){
     confirm_reg_request('/confirm-registration', 'POST', formdata);
 }
 
+function update_profile(session, fn, ln, gender, dob, sexual_preference, bio){
+    var formdata = new FormData();
+    
+    formdata.append('session', session);
+    formdata.append('fname', fn);
+    formdata.append('lname', ln);
+    formdata.append('gender', gender);
+    formdata.append('dob', dob);
+    formdata.append('sexual_preference', sexual_preference);
+    formdata.append('bio', bio);
+
+    update_profile_request('/update-profile', 'POST', formdata);
+}
+
 /*function userInfo(session){
     var formdata = new FormData();
 

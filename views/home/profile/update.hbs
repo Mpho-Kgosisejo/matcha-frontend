@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col l7 m9 s12">
             <div class="card">
-                <div class="card-content">
+                <div class="card-content update-container">
                     <h5 class="font-slim_">Update Profile</h5>
                     <hr>
                     <div class="row">
                         <form class="col s12">
                             <div class="row">
                                 <div class="col s12">
-                                    <div id="reporter"></div>
+                                    <div id="update_reporter"></div>
                                 </div>
                                 <div class="input-field col s12">
                                     <input id="firstname" type="text" class="_validate" value="{{user_data.firstname}}">
@@ -22,39 +22,68 @@
                                     <label for="username" >Lastname...</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="username" type="text" class="_validate" data-length="16" value="{{user_data.username}}">
+                                    <input id="username" type="text" class="_validate" data-length="16" value="{{user_data.username}}" disabled>
                                     <label for="username" >Username...</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="email" type="text" class="_validate" value="{{user_data.email}}">
+                                    <input id="email" type="text" class="_validate" value="{{user_data.email}}" disabled>
                                     <label for="email" >Email...</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <select id="gender">
-                                        <option value="" >Choose gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="all">All</option>
+                                        <option value="none" >Choose gender</option>
+                                        {{#ifSame user_data.gender 'male'}}
+                                            <option value="male" selected>Male</option>
+                                        {{else}}
+                                            <option value="male">Male</option>
+                                        {{/ifSame}}
+
+                                        {{#ifSame user_data.gender 'female'}}
+                                            <option value="female" selected>Female</option>
+                                        {{else}}
+                                            <option value="female">Female</option>
+                                        {{/ifSame}}
+                                        <!--<option value="all">All</option>-->
                                     </select>
                                     <label>My Gender</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input type="text" class="datepicker" id="dob">
+                                    {{#if user_data.date_of_birth}}
+                                        <input type="text" class="datepicker" id="dob" value="{{user_data.date_of_birth}}">
+                                    {{else}}
+                                        <input type="text" class="datepicker" id="dob">
+                                    {{/if}}
                                     <label for="dob">Date of Birth</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <select id="sexual_preference">
-                                        <option value="" >Choose Sexual Preference</option>
-                                        <option value="male">Males</option>
-                                        <option value="female">Females</option>
-                                        <option value="all">All</option>
+                                        <option value="all" >Choose Sexual Preference</option>
+                                        {{#ifSame user_data.sexual_preference 'male'}}
+                                            <option value="male" selected>Males</option>
+                                        {{else}}
+                                            <option value="male">Males</option>
+                                        {{/ifSame}}
+
+                                        {{#ifSame user_data.sexual_preference 'female'}}
+                                            <option value="female" selected>Females</option>
+                                        {{else}}
+                                            <option value="female">Females</option>
+                                        {{/ifSame}}
+
+                                        {{#ifSame user_data.sexual_preference 'all'}}
+                                            <option value="all" selected>All</option>
+                                        {{else}}
+                                            <option value="all">All</option>
+                                        {{/ifSame}}
                                     </select>
-                                    <label>My Gender</label>
+                                    <label>Sexual Preference</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <textarea id="bio" class="_validate materialize-textarea">{{user_data.biography}}</textarea>
                                     <label for="bio" >Biography...</label>
                                 </div>
+
+                                <input type="hidden" id="session" value="{{user_data.session}}">
 
                                 <!--
                                 <div class="file-field input-field">
@@ -68,7 +97,7 @@
                                 </div>
                                 -->
                             </div>
-                            <button class="btn btn-block waves-effect waves-light" type="submit" id="btn_save">Save</button>
+                            <button class="btn btn-block waves-effect waves-light" type="submit" id="update_profile">Save</button>
                         </form>
                     </div>
                 </div>
