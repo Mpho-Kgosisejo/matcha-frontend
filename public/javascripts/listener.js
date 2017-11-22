@@ -94,37 +94,27 @@ $(document).ready(function(){
         });
     }
 
-    itemId('img1').onchange = function(e){
-        var formdata = new FormData();
-        var fileReader = new FileReader();
-        var file = e.target.files[0];
-        var session = itemId('session').value;
+    if (itemId('img1')){
+        itemId('img1').onchange = function(e){
+            var formdata = new FormData();
+            var fileReader = new FileReader();
+            var file = e.target.files[0];
+            var session = itemId('session').value;
 
-        fileReader.addEventListener('load', function(){
-            src = fileReader.result;
-            formdata.append('image', src);
-            formdata.append('code', 1);
-            formdata.append('session', session);
-            name = 'Profile';
-            
-            //itemId('profile-preview').src = src;
+            fileReader.addEventListener('load', function(){
+                src = fileReader.result;
+                formdata.append('image', src);
+                formdata.append('code', 1);
+                formdata.append('session', session);
+                name = 'Profile';
+                
+                //itemId('profile-preview').src = src;
 
-            Materialize.toast(name + ' is uploading...', 3000, 'rounded');
-            upload_file_request('/profile-images', 'POST', formdata, name, 'profile-preview');
-        }, false);
+                Materialize.toast(name + ' is uploading...', 3000, 'rounded');
+                upload_file_request('/profile-images', 'POST', formdata, name, 'profile-preview');
+            }, false);
 
-        fileReader.readAsDataURL(file);
-
-        /*var image = new Image();
-        image.src = URL.createObjectURL(file);
-        image.onload = function(ev){
-            formdata.append('image', image);
-            formdata.append('code', 1);
-            formdata.append('session', session);
-            name = 'Profile';
-
-            upload_file_request('/profile-images', 'POST', formdata, name);
-            Materialize.toast(name + ' is uploading...', 3000, 'rounded');
-        }*/
-    };
+            fileReader.readAsDataURL(file);
+        };
+    }
 });

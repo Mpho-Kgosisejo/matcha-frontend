@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Fredoka+One|Kaushan+Script|Lobster|Luckiest+Guy|Righteous|Shrikhand');
 /*
 body {
   padding: 50px;
@@ -210,4 +211,27 @@ hr{
   background-size: cover;
   background-position: center;
   width: 125px;
+}
+
+.p404{
+  margin: 85px 0;
+  color: #858585;
+}
+
+.p404 h2{
+  
+}
+
+.p404 h1{
+  /*font-family: 'Bangers', cursive;*/
+  font-family: 'Kaushan Script', cursive;
+  /*font-weight: bold;*/
+  font-size: 12em;
+
+  /*background-color: #777777;
+  color: transparent;
+  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.945);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+       background-clip: text;*/
 }
