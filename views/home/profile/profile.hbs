@@ -6,15 +6,24 @@
             {{#if data}}
                 <div class="card profile-container">
                     <div class="profile">
-                        <div class="bg"></div>
+                        {{#if data.img1}}
+                            <div class="bg" style="background: url('{{data.img1.url}}')"></div>
+                        {{else}}
+                            <div class="bg" style="background: #b1b1b1"></div>
+                        {{/if}}
+                        
                         <div class="info">
-                            <img src="https://placeimg.com/640/480/people" alt="">
+                            {{#if data.img1}}
+                                <img src="{{data.img1.url}}" alt="">
+                            {{else}}
+                                <img src="https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png" alt="">
+                            {{/if}}
                             <span class="card-title names">
                                 {{data.firstname}}, {{data.lastname}}<br>
                                 <span>{{data.username}}</span>
                             </span>
                         </div>
-                        <!--<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
+                        
                         <a class='dropdown-button btn profile-menu-btn' href='#' data-activates='profile-menu'><i class="material-icons">more_vert</i></a>
                         <ul id='profile-menu' class='dropdown-content'>
                             {{#ifSame user_data.id data.id}}
@@ -41,13 +50,20 @@
                             <p><b>Sexual Preference</b>: <br> {{data.sexual_preference}}</p>
                             <p><b>Biography</b>: <br> {{data.biography}}</p>
                         </div>
-                        <div id="photos" >
-                            <div class="carousel carousel-slider">
-                                <a class="carousel-item" href="#one!"><img src="https://placeimg.com/640/480/people"></a>
-                                <a class="carousel-item" href="#two!"><img src="https://placeimg.com/640/480/people"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://placeimg.com/640/480/people"></a>
-                                <a class="carousel-item" href="#four!"><img src="https://placeimg.com/640/480/people"></a>
-                            </div>
+                        <div id="photos" class="align-right">
+                            {{#if data.images}}
+                                <div class="carousel carousel-slider">
+                                    {{#each data.images}}
+                                        <a class="carousel-item" href="#code{{code}}!"><img src="{{url}}"></a>
+                                    {{/each}}
+                                </div>
+                                <br>
+                                <small class="text-mute">Swip left or right</small>
+                            {{else}}
+                                <div class="alert alert-info alert-text-center">
+                                    No photos as yet...
+                                </div>
+                            {{/if}}
                         </div>
                         <div id="test3" >More</div>
                     </div>

@@ -17,6 +17,7 @@ $(document).ready(function(){
         itemId('log_user').addEventListener('click', function(e){
             e.preventDefault();
             
+            itemId('login_err_mssg').innerHTML = '';
             login(itemId('access_login').value, itemId('access_password').value);
         });
     }
@@ -96,25 +97,40 @@ $(document).ready(function(){
 
     if (itemId('img1')){
         itemId('img1').onchange = function(e){
-            var formdata = new FormData();
-            var fileReader = new FileReader();
-            var file = e.target.files[0];
-            var session = itemId('session').value;
+            upload_image(e, itemId('session').value, 1, 'Profile', 'profile-preview');
+        };
+    }
 
-            fileReader.addEventListener('load', function(){
-                src = fileReader.result;
-                formdata.append('image', src);
-                formdata.append('code', 1);
-                formdata.append('session', session);
-                name = 'Profile';
-                
-                //itemId('profile-preview').src = src;
+    if (itemId('img2')){
+        itemId('img2').onchange = function(e){
+            upload_image(e, itemId('session').value, 2, 'Photo 2', 'img2-preview');
+        };
+    }
 
-                Materialize.toast(name + ' is uploading...', 3000, 'rounded');
-                upload_file_request('/profile-images', 'POST', formdata, name, 'profile-preview');
-            }, false);
+    if (itemId('img3')){
+        itemId('img3').onchange = function(e){
+            upload_image(e, itemId('session').value, 3, 'Photo 3', 'img3-preview');
+        };
+    }
 
-            fileReader.readAsDataURL(file);
+    if (itemId('img4')){
+        itemId('img4').onchange = function(e){
+            upload_image(e, itemId('session').value, 4, 'Photo 4', 'img4-preview');
+        };
+    }
+
+    if (itemId('img5')){
+        itemId('img5').onchange = function(e){
+            upload_image(e, itemId('session').value, 5, 'Photo 5', 'img5-preview');
+        };
+    }
+
+    if (itemId('search-user')){
+        itemId('search-user').onkeyup = function(e){
+            search = itemId('search-user').value;
+
+            if (search.length >= 3)
+                search_user(search);
         };
     }
 });

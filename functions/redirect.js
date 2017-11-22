@@ -24,7 +24,7 @@ module.exports = {
               if (body.hasOwnProperty('response')){
           
                 if (body.response.state == 'true'){
-                  console.log(body.data);
+                  //console.log(body.data);
       
                   res.render(locate, {title: title, user_data: body.data, data: data, error: error});
                 }else{

@@ -42,6 +42,14 @@ function update_profile(session, fn, ln, gender, dob, sexual_preference, bio){
     update_profile_request('/update-profile', 'POST', formdata);
 }
 
+function search_user(value){
+    var formdata = new FormData();
+    
+    formdata.append('search_value', value);
+
+    search_user_request('/search', 'POST', formdata);
+}
+
 /*function userInfo(session){
     var formdata = new FormData();
 

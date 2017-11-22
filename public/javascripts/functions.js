@@ -94,3 +94,51 @@ function put_errors(element_id, move_to, error){
         }
     });
 }
+
+function upload_image(e, session, code, name, preview){
+    var formdata = new FormData();
+    var fileReader = new FileReader();
+    var file = e.target.files[0];
+
+    fileReader.addEventListener('load', function(){
+        src = fileReader.result;
+        formdata.append('image', src);
+        formdata.append('code', code);
+        formdata.append('session', session);
+
+        Materialize.toast(name + ' is uploading...', 3000);
+        upload_file_request('/profile-images', 'POST', formdata, name, preview);
+    }, false);
+
+    fileReader.readAsDataURL(file);
+}
+
+function put_search_results(data){
+    itemId('search-results').innerHTML = '';
+
+    data.forEach(function(element) {
+        console.log(element);
+        itemId('search-results').innerHTML += '<div class="col xl6 l12 m6 s12">' +
+                '<div class="card horizontal search">' +
+                    '<div class="card-image search-user-card-img" style="">' +
+                    '</div>' +
+                    '<div class="card-stacked">' +
+                        '<div class="card-content">' +
+                            '<div class="inner">' +
+                                '<h5 class="name">'+ element.firstname + ' ' + element.lastname +' <span class="font-slim">'+ element.username +'</span></h5>' +
+                                element.biography +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="card-action">' +
+                            '<div class="material-icons">stars</div>' +
+                            '<a class="dropdown-button btn" href="#" data-activates="profile-view-'+ element.id +'"><i class="material-icons">more_vert</i></a>' +
+                            '<ul id="profile-view-'+ element.id +'" class="dropdown-content">' +
+                                '<li><a href="#!">Connect</a></li>' +
+                                '<li><a href="#!">View Profile</a></li>' +
+                            '</ul>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+    }, this);
+}

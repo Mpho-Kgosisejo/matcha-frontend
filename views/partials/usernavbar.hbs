@@ -22,10 +22,22 @@
         <ul class="side-nav" id="mobile-demo">
             <li>
             <div class="user-view">
-                <div class="background">
-                    <img src="https://placeimg.com/420/420/nature">
-                </div>
-                <a href="#!user"><img class="circle" src="https://placeimg.com/420/420/people"></a>
+                    {{#if user_data.img1}}
+                        <div class="background" style="background: url('{{user_data.img1.url}}');">
+                            
+                        </div>
+                    {{else}}
+                        <div class="background" style="background: url('https://placeimg.com/420/420/nature');">
+                            
+                        </div>
+                    {{/if}}
+                <a href="#!user">
+                    {{#if user_data.img1}}
+                        <img class="circle" src="{{user_data.img1.url}}">
+                    {{else}}
+                        <img class="circle" src="https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png">
+                    {{/if}}
+                </a>
                 {{#if user_data}}
                 <a href="#!name">
                     <span class="white-text nav_user_name">

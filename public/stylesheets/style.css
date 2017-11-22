@@ -141,12 +141,13 @@ hr{
   position: relative;
 }
 
-.profile .bg{
+.profile .bg, .user-view .background{
   position: absolute;
   background-color: #525252;
-  background: url('https://placeimg.com/640/480/people');
+  /*background: url('https://placeimg.com/640/480/people');*/
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   filter: blur(8px);
   transform: scale(1.2);
   /*zoom: -250%;*/
@@ -205,12 +206,38 @@ hr{
   border-radius: 50%;
 }
 
+.card.search{
+
+}
+
+.card.search .card-content,
+.card.search .card-action{
+  padding: 12px;
+}
+
+.card.search .card-action .btn{
+  padding: 0 10px;
+  color: #525252;
+  background: transparent;
+  box-shadow: 0 0 1px rgb(201, 201, 201);
+  float: right;
+}
+
+.card.search .name{
+  font-size: 1.5em;
+}
+
+.card.search .card-content{
+  max-height: 190px;
+  overflow: auto;
+}
+
 .search-user-card-img{
   background-color: #525252;
   background: url('https://placeimg.com/640/480/people');
   background-size: cover;
   background-position: center;
-  width: 125px;
+  width: 135px;
 }
 
 .p404{
@@ -234,4 +261,16 @@ hr{
   -webkit-background-clip: text;
   -moz-background-clip: text;
        background-clip: text;*/
+}
+
+.preview-image-upload{
+  width: 175px;
+}
+
+.user-view a img{
+  box-shadow: 0 0 20px #525252;
+}
+
+.user-view {
+  text-shadow: 0 0 10px #525252;
 }

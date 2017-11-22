@@ -25,7 +25,7 @@ router.get('/profile/:username', function(req, res, next) {
         
             if (body.hasOwnProperty('response')){
                 data = body.data;
-                console.log(body);
+                //console.log(body);
                 redirect.redirect(req, res, next, 'home/profile/profile', 'Profile', data, body.response.message);
             }else
                 res.redirect('/');
@@ -61,6 +61,7 @@ router.get('/profile/:username/update', function(req, res, next) {
                         
                             if (body.hasOwnProperty('response')){
                                 data = body.data;
+                                //console.log(data);
 
                                 if (body.data.id === body_loginUser.data.id){
                                     redirect.redirect(req, res, next, 'home/profile/update', 'Update Profile', data, body.response.message);
