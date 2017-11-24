@@ -17,7 +17,10 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 });*/
 
 router.get('/profile/:username', function(req, res, next) {
-    var formdata = {username: req.params.username};
+    _cookies = JSON.stringify(req.cookies);
+    _cookies = JSON.parse(_cookies);
+
+    var formdata = {username: req.params.username, session: _cookies.login_session};
 
     request.get(localStorage.getItem('api_url') + '/profile', {form: formdata}, function(err, resp, body){
         try{
@@ -25,7 +28,7 @@ router.get('/profile/:username', function(req, res, next) {
         
             if (body.hasOwnProperty('response')){
                 data = body.data;
-                //console.log(body);
+                console.log(body);
                 redirect.redirect(req, res, next, 'home/profile/profile', 'Profile', data, body.response.message);
             }else
                 res.redirect('/');

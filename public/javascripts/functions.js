@@ -130,12 +130,7 @@ function put_search_results(data){
                             '</div>' +
                         '</div>' +
                         '<div class="card-action">' +
-                            '<div class="material-icons">stars</div>' +
-                            '<a class="dropdown-button btn" href="#" data-activates="profile-view-'+ element.id +'"><i class="material-icons">more_vert</i></a>' +
-                            '<ul id="profile-view-'+ element.id +'" class="dropdown-content">' +
-                                '<li><a href="#!">Connect</a></li>' +
-                                '<li><a href="#!">View Profile</a></li>' +
-                            '</ul>' +
+                            '<a class="float-right" href="/profile/'+ element.username +'" >View Profile</a>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +

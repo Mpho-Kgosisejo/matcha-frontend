@@ -29,7 +29,19 @@
                             {{#ifSame user_data.id data.id}}
                                 <li><a href="./{{user_data.username}}/update">Update Profile</a></li>
                             {{else}}
-                                <li><a href="#!">Connect</a></li>
+                                {{#if data.relationship}}
+                                    {{#ifSame data.relationship.status '1'}}
+                                        <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 1)" id="users_relationship"><b>Unconnect</b></a></li>
+                                    {{else}}
+                                        {{#ifSame data.relationship.user_id_from data.id}}
+                                            <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 1)" id="users_relationship"><b>Accept Connection</b></a></li>
+                                        {{else}}
+                                            <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 0)" id="users_relationship"><b>Cancel Connection</b></a></li>
+                                        {{/ifSame}}
+                                    {{/ifSame}}
+                                {{else}}
+                                    <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 0)" id="users_relationship">Connect</a></li>
+                                {{/if}}
                                 <li class="divider"></li>
                                 <li><a href="#!">Report</a></li>
                                 <li><a href="#!">Block</a></li>

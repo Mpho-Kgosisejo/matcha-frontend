@@ -50,15 +50,29 @@ function search_user(value){
     search_user_request('/search', 'POST', formdata);
 }
 
-/*function userInfo(session){
+function connect_to_user(session, username, isAccept){
     var formdata = new FormData();
 
-    formdata.append('session', 1);
-    formdata.append('isSession', 1);
+    formdata.append('session', session);
+    formdata.append('username', username);
 
-    console.log('>> #' + getCookie('login_session'));
-
-    //ret = userinfo_request();
+    if (isAccept)
+        connect_to_user_request('/accept-invite', 'POST', formdata);
+    else
+        connect_to_user_request('/invite', 'POST', formdata);
 }
 
-userInfo();*/
+function send_mssg(username, box_id){
+    input_box = 'mssg-input-' + box_id;
+    session = '';
+
+    if (itemId('session')){
+        session = itemId('session').value;
+    }
+    if (itemId(input_box)){
+        mssg = itemId(input_box).value;
+
+        if (mssg.length > 0)
+            console.log(itemId(input_box).value, '%', session);
+    }
+}

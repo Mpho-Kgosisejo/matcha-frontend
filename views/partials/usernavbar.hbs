@@ -23,7 +23,7 @@
             <li>
             <div class="user-view">
                     {{#if user_data.img1}}
-                        <div class="background" style="background: url('{{user_data.img1.url}}');">
+                        <div class="background" style="background-image: url('{{user_data.img1.url}}');">
                             
                         </div>
                     {{else}}
@@ -41,7 +41,7 @@
                 {{#if user_data}}
                 <a href="#!name">
                     <span class="white-text nav_user_name">
-                        <span class="font-slim">{{user_data.firstname}} {{user_data.lastname}}</span> - {{user_data.username}}
+                        <span class="font-slim">{{user_data.firstname}} {{user_data.lastname}} - </span>{{user_data.username}}
                     </span>
                 </a>
                 <a href="#!email"><span class="white-text email">{{user_data.email}}</span></a>

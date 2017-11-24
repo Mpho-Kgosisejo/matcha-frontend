@@ -1,5 +1,5 @@
 localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-api');
-var site = 'http://127.0.0.1:8080/matcha-api';
+var site = 'http://127.0.0.1:8080/matcha';
 var api = (site + '/public');
 
 function    login_request(_url, method, formdata){
@@ -209,7 +209,6 @@ function upload_file_request(_url, method, formdata, name, previewId){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
@@ -270,6 +269,46 @@ function search_user_request(_url, method, formdata){
                 }
             }catch(e){
                 //itemId('update_reporter').innerHTML = htmlAlert('danger', 'Could not update profile at this time, try again later.');
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function connect_to_user_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    response_mssg = body.response.message;
+                    
+                    if (response_mssg === 'connected'){
+                        Materialize.toast('Connection sent', 4000);
+                        itemId('users_relationship').innerHTML = '<b>Cancel connection</b>';
+                    }else{
+                        Materialize.toast('Unconnected to user', 4000);
+                        itemId('users_relationship').innerHTML = 'Connect';
+                    }
+                    return ;
+                }else{
+                    Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
             }
         }
     }

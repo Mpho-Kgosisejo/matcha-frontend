@@ -1,1 +1,84 @@
 {{>usernavbar}}
+
+<div class="container messager">
+    <div class="row">
+        <div class="col xl3 l2 m1 s12"></div>
+        <div class="col xl6 l8 m10 s12 inner">
+
+            <input type="hidden" id="session" value="{{user_data.session}}">
+
+            <!--
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header">
+                        <div class="img"></div>
+                        <span>Username</span>
+                    </div>
+                    
+                    <div class="collapsible-body">
+                        <div class="chat">
+                            <div class="mssg other"><p>Hello</p></div>
+                            <div class="mssg user"><p>Mmm...</p></div>
+                        </div>
+                        <small class="reporter text-mute">User is typing...</small>
+                    </div>
+                    <div class="collapsible-body input">
+                        <form>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="text" id="mssg-input" class="">
+                                    <label for="autocomplete-input">Message</label>
+                                </div>
+                            </div>
+                            <div class="btn btn-block">Send</div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+            -->
+            {{#if data}}
+                {{#each data}}
+                    {{#ifSame user_id ../user_data.id}}{{else}}
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header">
+                                    {{#if profile_url}}
+                                        <div class="img" style="background-image: url('{{profile_url}}')"></div>
+                                    {{else}}
+                                        <div class="img" style="background-image: url('https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png')"></div>
+                                    {{/if}}
+                                    
+                                    <span><a href="/profile/{{username}}">{{username}}</a></span>
+                                    <!--<small class="text-mute ">Online</small>-->
+                                </div>
+                                
+                                <div class="collapsible-body">
+                                    <div class="chat">
+                                        <div class="mssg other"><p>Hello</p></div>
+                                        <div class="mssg user"><p>Mmm...</p></div>
+                                    </div>
+                                    <small class="reporter text-mute">User is typing...</small>
+                                </div>
+                                <div class="collapsible-body input">
+                                    <form>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" id="mssg-input-{{user_id}}">
+                                                <label for="autocomplete-input">Message</label>
+                                            </div>
+                                        </div>
+                                        <div class="btn btn-block" onclick="send_mssg('{{username}}', {{user_id}})">Send</div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    {{/ifSame}}
+                {{/each}}
+            {{else}}
+                <div class="alert alert-info">
+                    No connections to start chats
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
