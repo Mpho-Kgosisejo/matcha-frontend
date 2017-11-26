@@ -43,8 +43,8 @@
                                     <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 0)" id="users_relationship">Connect</a></li>
                                 {{/if}}
                                 <li class="divider"></li>
-                                <li><a href="#!">Report</a></li>
-                                <li><a href="#!">Block</a></li>
+                                <li><a class="modal-trigger" href="#report" onclick="ready_user_report({{data.id}} ,'{{data.username}}')">Report</a></li>
+                                <li><a onclick="block_user('{{user_data.session}}', {{data.id}})">Block</a></li>
                             {{/ifSame}}
                         </ul>
                     </div>

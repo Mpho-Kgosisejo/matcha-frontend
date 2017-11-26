@@ -9,11 +9,35 @@
   <link rel="stylesheet" href="/stylesheets/materialize.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
   <title>Match {{title}}</title>
 </head>
 <body>
 
   {{{body}}}
+
+  <!-- Modal Structure -->
+  <div id="report" class="modal">
+    <div class="modal-content">
+      <h5>Report <span class="font-slim" id="report_username">Username</span></h5>
+      <form>
+         <div class="row">
+           <br>
+            <div class="">
+                <div id="reporter_err_mssg"></div>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="report_mssg" class="_validate materialize-textarea"></textarea>
+                <label for="report_mssg" >Report message...</label>
+            </div>
+         </div>
+
+         <input type="hidden" id="report_userid" value="0">
+         <button class="btn btn-block" id="btn_report_user">Report</button>
+      </form>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-copyright">
@@ -23,6 +47,12 @@
   </footer>
 
   <script type="text/javascript" src="/javascripts/plugins/jquery.min.js"></script>
+  
+  <!--
+  <script type="text/javascript" src="/javascripts/plugins/socket.io.js"></script>
+  <script type="text/javascript" src="/javascripts/plugins/socket.io.js.map"></script>
+  -->
+  
   <script type="text/javascript" src="/javascripts/plugins/handlebars-v4.0.11.js"></script>
   <script type="text/javascript" src="/javascripts/materialize.min.js"></script>
   <script type="text/javascript" src="/javascripts/functions.js"></script>
@@ -30,5 +60,6 @@
   <script type="text/javascript" src="/javascripts/request_handler.js"></script>
   <script type="text/javascript" src="/javascripts/user.js"></script>
   <script type="text/javascript" src="/javascripts/listener.js"></script>
+  <script type="text/javascript" src="/javascripts/socket.js"></script>
 </body>
 </html>

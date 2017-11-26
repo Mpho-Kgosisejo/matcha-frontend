@@ -133,4 +133,21 @@ $(document).ready(function(){
                 search_user(search);
         };
     }
+
+    if (itemId('btn_report_user')){
+        itemId('btn_report_user').addEventListener('click', function(e){
+            e.preventDefault();
+
+            outputid = 'reporter_err_mssg';
+            session = itemId('logged_user_sesssion').value;
+            userid = itemId('report_userid').value;
+            mssg = itemId('report_mssg').value;
+
+            itemId(outputid).innerHTML = '';
+            if (mssg.length > 0)
+                report_user(session, userid, mssg, outputid);
+            else
+                itemId(outputid).innerHTML = htmlChip('danger', 'Report message can not be empty...');
+        });
+    }
 });

@@ -62,7 +62,28 @@ function connect_to_user(session, username, isAccept){
         connect_to_user_request('/invite', 'POST', formdata);
 }
 
-function send_mssg(username, box_id){
+function report_user(session, userid, mssg, output_id){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('userid', userid);
+    formdata.append('report_message', mssg);
+
+    console.log('id: ', userid, ' mssg: ', mssg, ' session: ', session);
+    //connect_to_user_request('/report-user', 'POST', formdata);
+}
+
+function block_user(session, user){
+    var formdata = new FormData();
+    
+    formdata.append('session', session);
+    formdata.append('userid', user);
+
+    console.log('session: ', session, ' id: ', user);
+    //connect_to_user_request('/block-user', 'POST', formdata);
+}
+
+/*function send_mssg(username, box_id){
     input_box = 'mssg-input-' + box_id;
     session = '';
 
@@ -75,4 +96,4 @@ function send_mssg(username, box_id){
         if (mssg.length > 0)
             console.log(itemId(input_box).value, '%', session);
     }
-}
+}*/

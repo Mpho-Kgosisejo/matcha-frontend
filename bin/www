@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('03:server');
 var http = require('http');
+var socket = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +89,35 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+// Socket.io
+var io = socket(server);
+var connections = [];
+var online_users = [];
+
+io.on('connection', function(socket){
+  //console.log('Socket connection up of id: ', socket.id);
+
+  socket.on('online', function(data){
+    if (!online_users.includes(data.username))
+      online_users.push(data.username);
+    socket.username = data.username;
+    
+    io.sockets.emit('online', online_users);
+  });
+
+  socket.on('disconnect', function(){
+    if (!socket.username) return ;
+    online_users.splice(online_users.indexOf(socket.username), 1);
+
+    io.sockets.emit('online', online_users);
+    console.log('User disconnected@: ', socket.username);
+  });
+
+  socket.on('send_chat_message', function(data){
+    io.sockets.emit('send_chat_message', data);
+  });
+
+  //console.log('hit');
+})

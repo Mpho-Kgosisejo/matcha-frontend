@@ -293,6 +293,8 @@ hr{
 }
 
 .messager .inner .img{
+  position: relative;
+
   width: 40px;
   height: 40px;
   margin-right: 10px;
@@ -302,6 +304,28 @@ hr{
   background-size: contain;
   background-size: cover;
   background-position: center;
+}
+
+.connections.collection .badge div{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 4px 0;
+  background: rgb(134, 218, 109);
+  box-shadow: 0 0 10px rgb(209, 209, 129);
+}
+
+.messager .inner .img div{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 0;
+  background: rgb(134, 218, 109);
+  box-shadow: 0 0 10px rgb(209, 209, 129);
 }
 
 .collapsible li.active{
@@ -373,4 +397,12 @@ hr{
 .messager .inner .collapsible-body .chat .mssg.user p{
   float: right;
   border-radius: 30px 30px 0px 30px;
+}
+
+.user-offline{
+  display: none;
+}
+
+.user-online{
+  display: block;
 }

@@ -118,7 +118,8 @@ function put_search_results(data){
 
     data.forEach(function(element) {
         console.log(element);
-        itemId('search-results').innerHTML += '<div class="col xl6 l12 m6 s12">' +
+        //class="col xl6 l12 m6 s12"
+        itemId('search-results').innerHTML += '<div class="col s12">' +
                 '<div class="card horizontal search">' +
                     '<div class="card-image search-user-card-img" style="">' +
                     '</div>' +
@@ -136,4 +137,11 @@ function put_search_results(data){
                 '</div>' +
             '</div>';
     }, this);
+}
+
+function ready_user_report(userid, username){
+    if (itemId('report_username') && itemId('report_userid')){
+        itemId('report_userid').value = userid;
+        itemId('report_username').innerHTML = username;
+    }
 }

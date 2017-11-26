@@ -1,6 +1,7 @@
 $(document).ready(function(){
     //Materialize... 
     $(".button-collapse").sideNav();
+    $('.modal').modal();
     //$('.carousel').carousel();
     $('.carousel.carousel-slider').carousel({fullWidth: true});
     //$('.carousel').carousel('next');
