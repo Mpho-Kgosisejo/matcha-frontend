@@ -1,3 +1,5 @@
+var chat_life = null;
+
 function login(login, password){
     var formdata = new FormData();
 
@@ -81,6 +83,31 @@ function block_user(session, user){
 
     console.log('session: ', session, ' id: ', user);
     //connect_to_user_request('/block-user', 'POST', formdata);
+}
+
+function ready_chat(header, id, userId){
+    var formdata = new FormData();
+    var divId = ('#chat_with_' + id);
+
+    formdata.append('other', id);
+    formdata.append('user', userId);
+    
+    $(divId).html('');
+
+    if ($('#'+header).attr('class') === 'collapsible-header'){
+        chat_life = 'on';
+    }else{
+        chat_life = null;
+    }
+    /*$(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');*/
+    
+    get_chat_request('/get-chat', 'GET', formdata, divId);
 }
 
 /*function send_mssg(username, box_id){

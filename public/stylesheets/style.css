@@ -243,9 +243,10 @@ hr{
 
 .search-user-card-img{
   background-color: #525252;
-  background: url('https://placeimg.com/640/480/people');
+  /*background: url('https://placeimg.com/640/480/people');*/
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   width: 135px;
 }
 
@@ -365,10 +366,23 @@ hr{
   height: 100%;
   width: 100%;
   overflow: auto;
+
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messager .inner .collapsible-body .chat p{
+  position: relative;
+}
+
+.messager .inner .collapsible-body .chat p .chat-date{
+  position: absolute;
+  right: 15px;
+  bottom: -20px;
 }
 
 .messager .inner .collapsible-body .chat .mssg{
-  
+  padding-bottom: 15px;
   width: 100%;
   color: #727272;
   font-weight: 300;

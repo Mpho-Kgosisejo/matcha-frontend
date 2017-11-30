@@ -29,7 +29,7 @@ function    login_request(_url, method, formdata){
                     itemId('login_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                //console.log(e);
+                console.log(e);
             }
         }
     }
@@ -306,6 +306,39 @@ function connect_to_user_request(_url, method, formdata){
                     return ;
                 }else{
                     Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function get_chat_request(_url, method, formdata, divId){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+                console.log(body);
+
+                if (body.response.state == 'true'){
+                    
+                    return ;
+                }else{
+                    
                 }
             }catch(e){
                 console.log(e);

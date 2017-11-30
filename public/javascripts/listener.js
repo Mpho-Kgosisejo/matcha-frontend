@@ -150,4 +150,5 @@ $(document).ready(function(){
                 itemId(outputid).innerHTML = htmlChip('danger', 'Report message can not be empty...');
         });
     }
+
 });

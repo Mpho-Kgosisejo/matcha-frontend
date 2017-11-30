@@ -4,9 +4,11 @@ var socket = io.connect(express_server);
 
 $(document).ready(function(){
 
-    socket.emit('online', {
-        username: itemId('logged_user').value
-    });
+    if (itemId('logged_user')){
+        socket.emit('online', {
+            username: itemId('logged_user').value
+        });
+    }
 
     //Checks which users are online...
     socket.on('online', function(data){

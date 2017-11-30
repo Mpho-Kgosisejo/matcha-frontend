@@ -118,10 +118,13 @@ function put_search_results(data){
 
     data.forEach(function(element) {
         console.log(element);
-        //class="col xl6 l12 m6 s12"
+        url = 'https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png';
+        if (element.url)
+            url = element.url;
+        
         itemId('search-results').innerHTML += '<div class="col s12">' +
                 '<div class="card horizontal search">' +
-                    '<div class="card-image search-user-card-img" style="">' +
+                    '<div class="card-image-tmp search-user-card-img" style="background-image: url(\''+ url +'\');">' +
                     '</div>' +
                     '<div class="card-stacked">' +
                         '<div class="card-content">' +
