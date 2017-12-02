@@ -5,7 +5,7 @@
         <div class="col l7 m9 s12">
             <div class="card">
                 <div class="card-content update-container">
-                    <h5 class="font-slim_">Update Profile</h5>
+                    <h5 class="font-slim">Update Profile</h5>
                     <hr>
                     <div class="row" style="margin: 0;">
                         <form class="col s12">
@@ -95,7 +95,40 @@
         <div class="col l5 m9 s12">
             <div class="card upload-profile-images">
                 <div class="card-content">
-                    <h5>Upload Photos</h5>
+                    <h5 class="font-slim">Tags</h5>
+                    <hr>
+                    <div class="row" >
+                        <form class="col s12">
+                            <div class="input-field col s12">
+                                <input id="tag" type="text" class="_validate" value="" placeholder="eg. ...">
+                                <label for="tag" >Add a tag</label>
+                            </div>
+                            <button class="btn btn-block waves-effect waves-light" type="submit" id="add_tag">Add tag</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <hr>
+                            <div id="tags_container">
+                                {{#if user_data.tags}}
+                                    {{#each user_data.tags}}
+                                        <div class="chip">
+                                            {{tag}}
+                                            <i class="close material-icons" onclick="delete_tag({{id}}, {{user_id}})">close</i>
+                                        </div>
+                                    {{/each}}
+                                {{else}}
+                                    <div class="chip chip-info chip-block" style="margin: 0;">You have no tags</div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card upload-profile-images">
+                <div class="card-content">
+                    <h5 class="font-slim">Upload Photos</h5>
                     <hr>
                     <div class="row" style="margin: 0;">
                         <div class="col s12">

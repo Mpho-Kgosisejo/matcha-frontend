@@ -346,7 +346,6 @@ hr{
 
 .messager .inner .collapsible-body{
   padding: 10px;
-  padding-bottom: 22px;
   height: 250px;
   border-bottom: 1px solid #e6e6e6;
   background: #ffffff;
@@ -369,6 +368,7 @@ hr{
 
   display: flex;
   flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
 }
 
 .messager .inner .collapsible-body .chat p{
@@ -379,6 +379,15 @@ hr{
   position: absolute;
   right: 15px;
   bottom: -20px;
+}
+
+.messager .inner .collapsible-body .chat .mssg.loading{
+  padding: 0;
+}
+
+.messager .inner .collapsible-body .chat .mssg.loading p{
+  width: 100%;
+  text-align: center;
 }
 
 .messager .inner .collapsible-body .chat .mssg{

@@ -148,3 +148,14 @@ function ready_user_report(userid, username){
         itemId('report_username').innerHTML = username;
     }
 }
+
+function put_tags(tags, divId){
+    itemId(divId).innerHTML = '';
+    if (!tags){
+        itemId(divId).innerHTML = '<div class="chip chip-info chip-block" style="margin: 0;">You have no tags</div>';
+        return ;
+    }
+    tags.forEach(function(element) {
+        $('#tags_container').append('<div class="chip">'+ element.tag +'<i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
+    }, this);
+}

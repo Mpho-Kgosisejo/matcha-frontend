@@ -7,35 +7,6 @@
 
             <input type="hidden" id="session" value="{{user_data.session}}">
 
-            <!--
-                <ul class="collapsible" data-collapsible="accordion">
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="img"></div>
-                            <span>Username</span>
-                        </div>
-                        
-                        <div class="collapsible-body">
-                            <div class="chat">
-                                <div class="mssg other"><p>Hello</p></div>
-                                <div class="mssg user"><p>Mmm...</p></div>
-                            </div>
-                            <small class="reporter text-mute">User is typing...</small>
-                        </div>
-                        <div class="collapsible-body input">
-                            <form>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input type="text" id="mssg-input" class="">
-                                        <label for="autocomplete-input">Message</label>
-                                    </div>
-                                </div>
-                                <div class="btn btn-block">Send</div>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            -->
             {{#if data}}
                 {{#each data}}
                     {{#ifSame user_id ../user_data.id}}{{else}}
@@ -54,7 +25,8 @@
                                 
                                 <div class="collapsible-body" >
                                     <div class="chat" id="chat_with_{{user_id}}">
-                                        <div class="mssg other">
+                                        <!--<div class="mssg loading"><p class="text-mute">Loading...</p></div>-->
+                                        <!--<div class="mssg other">
                                             <p>
                                                 Hello
                                                 <small class="chat-date text-mute">2017-11-30 13:46:50</small>
@@ -65,15 +37,15 @@
                                                 Mmm...
                                                 <small class="chat-date text-mute">2017-11-30 14:46:50</small>
                                             </p>
-                                        </div>
+                                        </div>-->
                                     </div>
-                                    <small class="reporter text-mute">User is typing...</small>
+                                    <!--<small class="reporter text-mute">User is typing...</small>-->
                                 </div>
                                 <div class="collapsible-body input">
                                     <form>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input type="text" id="mssg-input-{{user_id}}">
+                                                <input type="text" id="mssg_input_{{user_id}}">
                                                 <label for="autocomplete-input">Message</label>
                                             </div>
                                         </div>

@@ -86,28 +86,54 @@ function block_user(session, user){
 }
 
 function ready_chat(header, id, userId){
+
     var formdata = new FormData();
     var divId = ('#chat_with_' + id);
-
-    formdata.append('other', id);
-    formdata.append('user', userId);
     
-    $(divId).html('');
+    formdata.append('other_id', id);
+    formdata.append('user_id', userId);
 
+    $(divId).html('<div class="mssg loading"><p class="text-mute">Loading...</p></div>');
     if ($('#'+header).attr('class') === 'collapsible-header'){
-        chat_life = 'on';
+        chat_life = setInterval(function(){
+            get_chat_request('/get-chat', 'POST', formdata, divId, userId);
+        }, 2000);
     }else{
-        chat_life = null;
-    }
-    /*$(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
-    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');*/
+        clearInterval(chat_life);
+    }    
+}
+
+function send_message(from, to){
+    var formdata = new FormData();
+    inputId = ('mssg_input_' + to);
+    mssg = itemId(inputId).value;
+
+    formdata.append('from', from);
+    formdata.append('to', to);
+    formdata.append('mssg', mssg);
+
+    if (mssg.length > 0)
+        send_message_request('/send-message', 'POST', formdata, inputId);
+    else
+        Materialize.toast('Input can\'t be empty', 2000);
+}
+
+function add_tag(user, tag){
+    var formdata = new FormData();
+
+    formdata.append('user', user);
+    formdata.append('tag', tag);
     
-    get_chat_request('/get-chat', 'GET', formdata, divId);
+    add_tag_request('/add-tag', 'POST', formdata);
+}
+
+function delete_tag(id, userid){
+    var formdata = new FormData();
+    
+    formdata.append('id', id);
+    formdata.append('userid', userid);
+
+    delete_tag_request('/delete-tag', 'POST', formdata);
 }
 
 /*function send_mssg(username, box_id){

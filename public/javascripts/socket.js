@@ -39,14 +39,14 @@ $(document).ready(function(){
     */
 });
 
-function start_chat(from, to){
+/*function start_chat(from, to){
     socket.on('send_chat_message', function(data){
         if (data.mssg_from == from)
             console.log('> Mssg out: ', data);
         else
             console.log('Not..!');
     });
-}
+}*
 
 function send_message(from, to){
     var mssg = itemId("mssg-input-" + to).value;
@@ -59,5 +59,5 @@ function send_message(from, to){
             message: mssg 
         });
     }
-}
+}*/
 

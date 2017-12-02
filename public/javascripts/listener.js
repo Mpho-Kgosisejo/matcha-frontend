@@ -151,4 +151,20 @@ $(document).ready(function(){
         });
     }
 
+    if (itemId('add_tag')){
+        itemId('add_tag').addEventListener('click', function(e){
+            e.preventDefault();
+            tag = itemId('tag').value;
+
+            if (tag.length > 0)
+                add_tag(itemId('logged_user_id').value, tag);
+        });
+    }
+
+    /*if (itemId('')){
+        itemId('').addEventListener('click', function(e){
+
+        });
+    }*/
+
 });

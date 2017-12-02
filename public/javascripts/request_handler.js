@@ -315,7 +315,7 @@ function connect_to_user_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function get_chat_request(_url, method, formdata, divId){
+function get_chat_request(_url, method, formdata, divId, user_id){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -332,13 +332,131 @@ function get_chat_request(_url, method, formdata, divId){
 
             try{
                 body = JSON.parse(_http.responseText);
-                console.log(body);
 
                 if (body.response.state == 'true'){
-                    
+                    mssgs = body.data;
+
+                    $(divId).html('');
+                    mssgs.forEach(function(element) {
+                        if (element.user_id_from == user_id)
+                            $(divId).append('<div class="mssg user"><p>'+ element.message +'<small class="chat-date text-mute">'+ element.date_created +'</small></p></div>');
+                        else
+                            $(divId).append('<div class="mssg other"><p>'+ element.message +'<small class="chat-date text-mute">'+ element.date_created +'</small></p></div>');
+                    }, this);
+                    /*
+                    $(divId).append('<div class="mssg user"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+                    $(divId).append('<div class="mssg other"><p>Hello<small class="chat-date text-mute">2017-11-30 13:46:50</small></p></div>');
+                    */
                     return ;
                 }else{
                     
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function send_message_request(_url, method, formdata, inputId){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    itemId(inputId).value = '';
+                    return ;
+                }else{
+                    
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function add_tag_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    tags = body.data;
+                    itemId('tag').value = '';
+                    Materialize.toast('Tag added', 3000);
+
+                    put_tags(tags, 'tags_container');
+                    return ;
+                }else{
+                    Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function delete_tag_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    tags = body.data;
+                    Materialize.toast('Tag deleted', 3000);
+
+                    put_tags(tags, 'tags_container');
+                    /*itemId('tags_container').innerHTML = '';
+                    tags.forEach(function(element) {
+                        $('#tags_container').append('<div class="chip">'+ element.tag +'<i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
+                    }, this);*/
+                    return ;
+                }else{
+                    Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
                 console.log(e);
