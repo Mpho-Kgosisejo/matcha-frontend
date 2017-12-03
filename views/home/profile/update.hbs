@@ -83,6 +83,16 @@
                                     <label for="bio" >Biography...</label>
                                 </div>
 
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">add_location</i>
+                                    <input type="text" id="address_autocomplete" class="autocomplete" value="{{user_data.address}}" placeholder="Enter a location">
+                                    <label for="address_autocomplete">My location</label>
+                                </div>
+                                <div class="col s12 address_input">
+                                    <input type="checkbox" id="get_my_address" />
+                                    <label for="get_my_address">Auto fill location</label>
+                                </div>
+
                                 <input type="hidden" id="session" value="{{user_data.session}}">
                             </div>
                             <button class="btn btn-block waves-effect waves-light" type="submit" id="update_profile">Save</button>
@@ -93,7 +103,30 @@
         </div>
 
         <div class="col l5 m9 s12">
-            <div class="card upload-profile-images">
+            <!--
+            <div class="card">
+                <div class="card-content">
+                    <h5 class="font-slim">Location</h5>
+                    <hr>
+                    <div class="row" >
+                        <form class="">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">add_location</i>
+                                <input type="text" id="address_autocomplete" class="autocomplete" placeholder="Enter a location">
+                                <label for="address_autocomplete">My location</label>
+                            </div>
+                            <div class="col s12">
+                                <input type="checkbox" id="get_my_address" />
+                                <label for="get_my_address">Auto fill location</label>
+                            </div>
+                            <button class="btn btn-block waves-effect waves-light" type="submit" id="add_tag">Add tag</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            -->
+            
+            <div class="card">
                 <div class="card-content">
                     <h5 class="font-slim">Tags</h5>
                     <hr>

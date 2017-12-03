@@ -30,7 +30,7 @@ function confirm_reg(code){
     confirm_reg_request('/confirm-registration', 'POST', formdata);
 }
 
-function update_profile(session, fn, ln, gender, dob, sexual_preference, bio){
+function update_profile(session, fn, ln, gender, dob, sexual_preference, bio, address){
     var formdata = new FormData();
     
     formdata.append('session', session);
@@ -40,6 +40,7 @@ function update_profile(session, fn, ln, gender, dob, sexual_preference, bio){
     formdata.append('dob', dob);
     formdata.append('sexual_preference', sexual_preference);
     formdata.append('bio', bio);
+    formdata.append('address', address);
 
     update_profile_request('/update-profile', 'POST', formdata);
 }
@@ -134,6 +135,19 @@ function delete_tag(id, userid){
     formdata.append('userid', userid);
 
     delete_tag_request('/delete-tag', 'POST', formdata);
+}
+
+function track_user(){
+    var formdata = new FormData();
+
+    $.getJSON('http://freegeoip.net/json/', function(data){
+        if (data){
+            formdata.append('session', itemId('logged_user_sesssion').value);
+            formdata.append('location', JSON.stringify(data));
+
+            tarck_user_request('/track-user', 'POST', formdata);
+        }
+    });
 }
 
 /*function send_mssg(username, box_id){

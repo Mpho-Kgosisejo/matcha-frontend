@@ -85,13 +85,14 @@ $(document).ready(function(){
             sexual_preference = itemId('sexual_preference').value;
             bio = itemId('bio').value;
             session = itemId('session').value;
+            address = itemId('address_autocomplete').value;
 
             error += validate_isempty('Firstname', fn);
             error += validate_isempty('Lastname', ln);
 
             put_errors('update_reporter', '.update-container', error);
             if (!error)
-            update_profile(session, fn, ln, sex, dob, sexual_preference, bio);
+            update_profile(session, fn, ln, sex, dob, sexual_preference, bio, address);
         });
     }
 
@@ -129,8 +130,10 @@ $(document).ready(function(){
         itemId('search-user').onkeyup = function(e){
             search = itemId('search-user').value;
 
-            if (search.length >= 3)
+            if (search.length > 0)
                 search_user(search);
+            else
+                itemId('search-results').innerHTML = '';
         };
     }
 
@@ -158,6 +161,40 @@ $(document).ready(function(){
 
             if (tag.length > 0)
                 add_tag(itemId('logged_user_id').value, tag);
+        });
+    }
+
+    if (itemId('get_my_address')){
+        itemId('get_my_address').addEventListener('change', function(){
+            if (itemId('get_my_address').checked === true){
+                //API_KEY: AIzaSyAwz4ZS3dHE-2F2G2Gsn4nEsitvJbGWRBc
+                //new: AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ
+                var google_apikey = 'AIzaSyAwz4ZS3dHE-2F2G2Gsn4nEsitvJbGWRBc';
+
+                if (navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(function(data){
+                         //geolocation is allowed...!
+                        coords = data.coords;
+
+                        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ coords.latitude +','+ coords.longitude +'&key='+google_apikey, function(address){
+                            if (address.status == 'OK'){
+                                if (address.results){
+                                    formatted_address = address.results[0].formatted_address
+                                    itemId('address_autocomplete').value = formatted_address;
+                                    return ;
+                                }
+                            }
+                            Materialize.toast('Could not get location.', 4000);
+                        });
+                    }, function(error){
+                        //geolocation is blocked or something...!
+                        Materialize.toast('Location is not allowed or not supported.', 4000);
+                        Materialize.toast('Allow location to use this.', 4000);
+                    });
+                }
+            }else{
+                itemId('address_autocomplete').value = '';
+            }
         });
     }
 

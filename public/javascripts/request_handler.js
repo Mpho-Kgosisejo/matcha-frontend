@@ -22,6 +22,7 @@ function    login_request(_url, method, formdata){
                 if (body.response.state == 'true'){
                     setCookie('login_session', body.data.session);
                     itemId('login_err_mssg').innerHTML = '';
+                    track_user();
 
                     document.location.reload(true);
                 }else{
@@ -89,7 +90,7 @@ function    register_request(_url, method, formdata){
         _http.send(formdata);
 }
 
-function confirm_registration(_url, method, formdata){
+function    confirm_registration(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -122,7 +123,7 @@ function confirm_registration(_url, method, formdata){
     _http.send(formdata);
 }
 
-function confirm_reg_request(_url, method, formdata){
+function    confirm_reg_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -156,7 +157,7 @@ function confirm_reg_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function update_profile_request(_url, method, formdata){
+function    update_profile_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -195,7 +196,7 @@ function update_profile_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function upload_file_request(_url, method, formdata, name, previewId){
+function    upload_file_request(_url, method, formdata, name, previewId){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -243,7 +244,7 @@ function upload_file_request(_url, method, formdata, name, previewId){
     _http.send(formdata);
 }
 
-function search_user_request(_url, method, formdata){
+function    search_user_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -275,7 +276,7 @@ function search_user_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function connect_to_user_request(_url, method, formdata){
+function    connect_to_user_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -315,7 +316,7 @@ function connect_to_user_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function get_chat_request(_url, method, formdata, divId, user_id){
+function    get_chat_request(_url, method, formdata, divId, user_id){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -359,7 +360,7 @@ function get_chat_request(_url, method, formdata, divId, user_id){
     _http.send(formdata);
 }
 
-function send_message_request(_url, method, formdata, inputId){
+function    send_message_request(_url, method, formdata, inputId){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -455,6 +456,38 @@ function delete_tag_request(_url, method, formdata){
                         $('#tags_container').append('<div class="chip">'+ element.tag +'<i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
                     }, this);*/
                     return ;
+                }else{
+                    Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function tarck_user_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+            console.log(_http.responseText);
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    
                 }else{
                     Materialize.toast(body.response.message, 4000);
                 }

@@ -116,8 +116,11 @@ function upload_image(e, session, code, name, preview){
 function put_search_results(data){
     itemId('search-results').innerHTML = '';
 
+    if (!data){
+        itemId('search-results').innerHTML = '<div class="alert">No match</div>';
+        return ;
+    }
     data.forEach(function(element) {
-        console.log(element);
         url = 'https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png';
         if (element.url)
             url = element.url;
@@ -158,4 +161,10 @@ function put_tags(tags, divId){
     tags.forEach(function(element) {
         $('#tags_container').append('<div class="chip">'+ element.tag +'<i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
     }, this);
+}
+
+function activate_places_search(){
+    var input = itemId('address_autocomplete');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
 }

@@ -277,6 +277,12 @@ hr{
   width: 175px;
 }
 
+#profile-preview{
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+}
+
 .user-view a img{
   box-shadow: 0 0 20px #525252;
 }
@@ -428,4 +434,8 @@ hr{
 
 .user-online{
   display: block;
+}
+
+.address_input{
+  margin-bottom: 15px;
 }
