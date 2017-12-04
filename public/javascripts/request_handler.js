@@ -392,7 +392,7 @@ function    send_message_request(_url, method, formdata, inputId){
     _http.send(formdata);
 }
 
-function add_tag_request(_url, method, formdata){
+function    add_tag_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -428,7 +428,7 @@ function add_tag_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function delete_tag_request(_url, method, formdata){
+function    delete_tag_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -467,7 +467,7 @@ function delete_tag_request(_url, method, formdata){
     _http.send(formdata);
 }
 
-function tarck_user_request(_url, method, formdata){
+function    tarck_user_request(_url, method, formdata){
     var _http = new XMLHttpRequest();
     
     _http.open(method, (api + _url), true);
@@ -481,7 +481,6 @@ function tarck_user_request(_url, method, formdata){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);

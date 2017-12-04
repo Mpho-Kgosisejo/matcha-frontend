@@ -10,7 +10,7 @@ function login(login, password){
     login_request('/login', 'POST', formdata);
 }
 
-function register(fn, ln, un, email, password){
+function register(fn, ln, un, email, password, dob){
     var formdata = new FormData();
     
     formdata.append('fname', fn);
@@ -18,6 +18,7 @@ function register(fn, ln, un, email, password){
     formdata.append('username', un);
     formdata.append('email', email);
     formdata.append('password', password);
+    formdata.append('dob', dob);
 
     register_request('/register', 'POST', formdata);
 }

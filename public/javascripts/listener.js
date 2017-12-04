@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    if (itemId('logged_user_sesssion')){
+        track_user();
+    }
+
     if (itemId('cnfrm_reg')){
         itemId('cnfrm_reg').addEventListener('click', function(e){
             e.preventDefault();
@@ -32,6 +36,7 @@ $(document).ready(function(){
             un = itemId('reg_username').value;
             mail = itemId('reg_email').value;
             pass = itemId('reg_password').value;
+            dob = itemId('dob').value;
 
             if (!fn)
                 error += 'Firstname can not be empty;';
@@ -41,8 +46,10 @@ $(document).ready(function(){
                 error += 'Username can not be empty;';
             else{
                 if (un.length < 6)
-                    error += 'Username should be 6 Chars. min.;';
+                    error += 'Username should be 6 Characters minimum;';
             }
+            if (!dob)
+                error += 'Date of birth can not be empty;';
             if (!mail)
                 error += 'Email can not be empty;';
             else{
@@ -52,10 +59,10 @@ $(document).ready(function(){
             if (!pass)
                 error += 'Password can not be empty;';
             else{
-                if (pass.length < 6)
-                    error += 'Password should be 6 Chars. min.;';
+                if (pass.length < 5)
+                    error += 'Password should be 5 Characters minimum;';
                 if (pass.length > 16)
-                    error += 'Password should be 16 Chars. max.;';
+                    error += 'Password should be 16 Characters maximum;';
             }
 
             errors = error.split(";");
@@ -68,7 +75,7 @@ $(document).ready(function(){
             });
             
             if (!error)
-                register(fn, ln, un, mail, pass);
+                register(fn, ln, un, mail, pass, dob);
         });
     }
 
@@ -92,7 +99,7 @@ $(document).ready(function(){
 
             put_errors('update_reporter', '.update-container', error);
             if (!error)
-            update_profile(session, fn, ln, sex, dob, sexual_preference, bio, address);
+                update_profile(session, fn, ln, sex, dob, sexual_preference, bio, address);
         });
     }
 
@@ -194,6 +201,22 @@ $(document).ready(function(){
                 }
             }else{
                 itemId('address_autocomplete').value = '';
+            }
+        });
+    }
+
+    if (itemId('btn_changepassword')){
+        itemId('btn_changepassword').addEventListener('click', function(e){
+            e.preventDefault();
+
+            error = '';
+            pold = itemId('oldpswd').value;
+            pnew = itemId('newpswd').value;
+            
+            console.log(pold, ' - ', pnew);
+            if (!error){
+                $('#changepassword_modal').modal('close');
+                Materialize.toast('Password successfully changed', 4000);
             }
         });
     }
