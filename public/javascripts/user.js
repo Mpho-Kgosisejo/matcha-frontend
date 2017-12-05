@@ -151,6 +151,16 @@ function track_user(){
     });
 }
 
+function changepassword(session, pold, pnew){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('oldp', pold);
+    formdata.append('newp', pnew);
+
+    changepassword_request('/changepassword', 'POST', formdata);
+}
+
 /*function send_mssg(username, box_id){
     input_box = 'mssg-input-' + box_id;
     session = '';

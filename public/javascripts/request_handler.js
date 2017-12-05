@@ -497,3 +497,37 @@ function    tarck_user_request(_url, method, formdata){
     }
     _http.send(formdata);
 }
+
+function    changepassword_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    $('#changepassword_modal').modal('close');
+                    Materialize.toast(body.response.message, 4000);
+                    clear_input('oldpswd');
+                    clear_input('newpswd');
+                }else{
+                   itemId('pswdchg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}

@@ -28,6 +28,7 @@ router.get('/profile/:username', function(req, res, next) {
         
             if (body.hasOwnProperty('response')){
                 data = body.data;
+                
                 console.log(body);
                 redirect.redirect(req, res, next, 'home/profile/profile', 'Profile', data, body.response.message);
             }else

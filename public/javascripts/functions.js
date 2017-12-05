@@ -2,6 +2,10 @@ function itemId(id){
     return (document.getElementById(id));
 }
 
+function clear_input(element_id){
+    itemId(element_id).value = '';
+}
+
 function setCookie(key, value){
     document.cookie = key + '=' + value;
 }
@@ -69,8 +73,8 @@ function validate_isempty(name, element){
 }
 
 function validate_ifless(name, num, element){
-    if (element.length > num){
-        error = name + ' should be '+ num +' Characters maximum.;';
+    if (element.length < num){
+        error = (name + ' should be '+ num +' Characters minimum.;');
         return (error);
     }
     return ('');
@@ -78,7 +82,7 @@ function validate_ifless(name, num, element){
 
 function validate_ifgreater(name, num, element){
     if (element.length > num){
-        error = name + ' should be '+ num +' Characters minimum.;';
+        error = (name + ' should be '+ num +' Characters maximum.;');
         return (error);
     }
     return ('');
@@ -89,7 +93,8 @@ function put_errors(element_id, move_to, error){
     itemId(element_id).innerHTML = '';
     errors.forEach(function(element) {
         if (element.trim()){
-            autoScroll(move_to);
+            if (move_to)
+                autoScroll(move_to);
             itemId(element_id).innerHTML += htmlChip('danger', element);
         }
     });
@@ -114,6 +119,8 @@ function upload_image(e, session, code, name, preview){
 }
 
 function put_search_results(data){
+    console.log(data);
+
     itemId('search-results').innerHTML = '';
 
     if (!data){
@@ -122,8 +129,8 @@ function put_search_results(data){
     }
     data.forEach(function(element) {
         url = 'https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png';
-        if (element.url)
-            url = element.url;
+        if (element.img_url)
+            url = element.img_url;
         
         itemId('search-results').innerHTML += '<div class="col s12">' +
                 '<div class="card horizontal search">' +
@@ -133,6 +140,7 @@ function put_search_results(data){
                         '<div class="card-content">' +
                             '<div class="inner">' +
                                 '<h5 class="name">'+ element.firstname + ' ' + element.lastname +' <span class="font-slim">'+ element.username +'</span></h5>' +
+                                '<h5 class="font-slim visits"><span><i class="material-icons">star</i> '+ element.visits +'%</span></h5>'+
                                 element.biography +
                             '</div>' +
                         '</div>' +

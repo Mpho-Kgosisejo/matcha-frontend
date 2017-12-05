@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-    if (itemId('logged_user_sesssion')){
-        track_user();
-    }
-
     if (itemId('cnfrm_reg')){
         itemId('cnfrm_reg').addEventListener('click', function(e){
             e.preventDefault();
@@ -59,10 +55,12 @@ $(document).ready(function(){
             if (!pass)
                 error += 'Password can not be empty;';
             else{
-                if (pass.length < 5)
-                    error += 'Password should be 5 Characters minimum;';
+                if (pass.length < 6)
+                    error += 'Password should be 6 Characters minimum;';
+                /*
                 if (pass.length > 16)
                     error += 'Password should be 16 Characters maximum;';
+                */
             }
 
             errors = error.split(";");
@@ -210,14 +208,18 @@ $(document).ready(function(){
             e.preventDefault();
 
             error = '';
+            session = itemId('logged_user_sesssion').value;
             pold = itemId('oldpswd').value;
             pnew = itemId('newpswd').value;
             
-            console.log(pold, ' - ', pnew);
-            if (!error){
-                $('#changepassword_modal').modal('close');
-                Materialize.toast('Password successfully changed', 4000);
-            }
+            error += validate_isempty('Old password', pold);
+            error += validate_isempty('New password', pnew);
+            if (pnew)
+                error += validate_ifless('New password', 6, pnew); 
+
+            put_errors('pswdchg_err_mssg', null, error);
+            if (!error)
+                changepassword(session, pold, pnew);
         });
     }
 

@@ -222,6 +222,14 @@ hr{
 
 }
 
+.card.search .visits{
+  font-size: 16px;
+}
+
+.card.search .visits i{
+  font-size: 14px;
+}
+
 .card.search .card-content,
 .card.search .card-action{
   padding: 12px;
@@ -442,4 +450,8 @@ hr{
 
 .login_n_reg .btn{
   margin-bottom: 11px;
+}
+
+.card-title i{
+  font-size: 16px;
 }
