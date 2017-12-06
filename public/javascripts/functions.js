@@ -167,7 +167,7 @@ function put_tags(tags, divId){
         return ;
     }
     tags.forEach(function(element) {
-        $('#tags_container').append('<div class="chip">'+ element.tag +'<i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
+        $('#tags_container').append('<div class="chip"><a href="#'+ element.tag +'">#'+ element.tag +'</a><i class="close material-icons" onclick="delete_tag('+ element.id +', '+ element.user_id +')">close</i></div>');
     }, this);
 }
 

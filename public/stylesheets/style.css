@@ -455,3 +455,11 @@ hr{
 .card-title i{
   font-size: 16px;
 }
+
+#more .collapsible-body {
+  padding: 15px;
+}
+
+#more .collapsible-body .collection-item{
+  padding: 10px;
+}

@@ -146,7 +146,7 @@
                                 {{#if user_data.tags}}
                                     {{#each user_data.tags}}
                                         <div class="chip">
-                                            {{tag}}
+                                            <a href="#{{tag}}">#{{tag}}</a>
                                             <i class="close material-icons" onclick="delete_tag({{id}}, {{user_id}})">close</i>
                                         </div>
                                     {{/each}}

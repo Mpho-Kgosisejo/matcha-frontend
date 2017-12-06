@@ -1,8 +1,36 @@
 <div class="card-panel">
     <h5 class="font-slim">Suggestions</h5>
     <hr>
-    <div class="alert alert-info">
+    {{#if user_data.suggestions}}
+        {{#each user_data.suggestions}}
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://placeimg.com/420/420/nature">
+                </div>
+                <div class="card-content">
+                    <h5 class="font-slim"><a href="/profile/{{username}}">{{firstname}} {{lastname}}</a></h5>
+                    <!--
+                    <span class="card-title activator grey-text text-darken-4 font-slim">
+                        <small>about {{username}}</small>
+                        <i class="material-icons right">more_vert</i>
+                    </span>
+                    -->
+                    <span><i class="material-icons">star</i> 99%</span>
+                </div>
+                <!--
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><small>about {{username}}</small><i class="material-icons right">close</i></span>
+                    <hr>
+                    <p>{{biography}}</p>
+                </div>
+                -->
+                 <!--<div class="card-action">...</div>-->
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="alert alert-info">
         Could not find a match for you.<br>
-        <small>How about you try to update your profile with more details.</small> 
-    </div>
+            <small>How about you try to update your profile with more details.</small> 
+        </div>
+    {{/if}}
 </div>

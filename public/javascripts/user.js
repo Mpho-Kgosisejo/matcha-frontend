@@ -143,10 +143,12 @@ function track_user(){
 
     $.getJSON('http://freegeoip.net/json/', function(data){
         if (data){
-            formdata.append('session', itemId('logged_user_sesssion').value);
-            formdata.append('location', JSON.stringify(data));
+            if (itemId('logged_user_sesssion')){
+                formdata.append('session', itemId('logged_user_sesssion').value);
+                formdata.append('location', JSON.stringify(data));
 
-            tarck_user_request('/track-user', 'POST', formdata);
+                tarck_user_request('/track-user', 'POST', formdata);
+            }
         }
     });
 }
