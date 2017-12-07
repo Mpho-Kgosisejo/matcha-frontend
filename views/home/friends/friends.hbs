@@ -3,14 +3,79 @@
 <div class="container">
     <div class="row">
         <div class="col l7 s12">
-            <div class="card-panel">
+            <div class="card-panel search">
                 <h5>Search for your Match</h5>
                 <hr>
                 <form >
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 advanced_search_dropdown_btn_container" style="margin: 0;">
+                            <a class='dropdown-button btn advanced_search_dropdown_btn' href='#' data-activates='advanced_search_dropdown'>Search Type</a>
+                            <ul id='advanced_search_dropdown' class='dropdown-content'>
+                                <li><a href="#!" id="simple_search_btn">Simple</a></li>
+                                <li><a href="#!" id="advanced_search_btn">Advanced</a></li>
+                            </ul>
+                            <hr>
+                        </div>
+                        <div class="input-field col s12" id="simple_search">
                             <input id="search-user" type="text" class="validate" placeholder="eg. username, firstname or lastname">
-                            <label class="active" for="search">Search</label>
+                            <label class="active" for="search-user">Simple Search</label>
+                        </div>
+
+                        <div class="input-field col s12 " id="advanced_search" style="display: none;">
+                            <div class="row">
+                                <div class="input-field col xl6 l12 m6 s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="search_user_age_gap_min" type="number" class="validate">
+                                            <label class="active" for="search_user_age_gap_min">Age gap min.</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input id="search_user_age_gap_max" type="number" class="validate">
+                                            <label class="active" for="search_user_age_gap_max">Age gap max.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field col xl6 l12 m6 s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="search_user_fame_gap_min" type="number" class="validate" >
+                                            <label class="active" for="search_user_fame_gap_min">Fame gap min.</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input id="search_user_fame_gap_max" type="number" class="validate" >
+                                            <label class="active" for="search_user_fame_gap_max">Fame gap max.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field col xl6 l12 m6 s12">
+                                    <input id="search_user_location" type="text" class="validate" >
+                                    <label class="active" for="search_user_location">Location</label>
+                                </div>
+                                <div class="input-field col xl6 l12 m6 s12">
+                                    <select multiple id="search_user_tags">
+                                        <option value="" disabled selected>Choose tag/s</option>
+                                        <option value="1">Option 1</option>
+                                    </select>
+                                    <label>Tags</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="order_by">
+                                        <option value="age" selected>Age</option>
+                                        <option value="fame">Fame</option>
+                                        <option value="location">Location</option>
+                                        <option value="tags">Tags</option>
+                                    </select>
+                                    <label>Order by</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="sort_by">
+                                        <option value="ASC" selected>Asc</option>
+                                        <option value="DESC">Desc</option>
+                                    </select>
+                                    <label>Sort by</label>
+                                </div>
+                                <button class="btn btn-block" id="do_advanced_search">Search</button>
+                            </div>
                         </div>
                     </div>
                 </form>

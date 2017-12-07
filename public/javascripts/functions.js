@@ -6,6 +6,16 @@ function clear_input(element_id){
     itemId(element_id).value = '';
 }
 
+function setValue(val, isNum = false){
+    if (!val){
+        if (isNum)
+            return (0);
+        else
+            return ('');
+    }
+    return (val);
+}
+
 function setCookie(key, value){
     document.cookie = key + '=' + value;
 }
@@ -121,7 +131,7 @@ function upload_image(e, session, code, name, preview){
 function put_search_results(data){
     console.log(data);
 
-    itemId('search-results').innerHTML = '';
+    itemId('search-results').innerHTML = '<hr>';
 
     if (!data){
         itemId('search-results').innerHTML = '<div class="alert">No match</div>';

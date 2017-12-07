@@ -17,7 +17,9 @@ $(document).ready(function(){
         itemId('log_user').addEventListener('click', function(e){
             e.preventDefault();
             
-            itemId('login_err_mssg').innerHTML = '';
+            //itemId('login_err_mssg').innerHTML = '';
+            $('#login_err_mssg').slideUp('fast');
+            $('#login_err_mssg').html('');
             login(itemId('access_login').value, itemId('access_password').value);
         });
     }
@@ -220,6 +222,45 @@ $(document).ready(function(){
             put_errors('pswdchg_err_mssg', null, error);
             if (!error)
                 changepassword(session, pold, pnew);
+        });
+    }
+
+    if (itemId('advanced_search_btn') && itemId('simple_search_btn')){
+        itemId('advanced_search_btn').addEventListener('click', function(e){
+            e.preventDefault();
+
+            $('#simple_search').slideUp('fast');
+            $('#advanced_search').slideDown('slow');
+            $('#search-results').html('');
+
+            $('#search-user').val('');
+        });
+
+        itemId('simple_search_btn').addEventListener('click', function(e){
+            e.preventDefault();
+
+            $('#advanced_search').slideUp('fast');
+            $('#simple_search').slideDown('slow');
+            $('#search-results').html('');
+        });
+    }
+
+    if (itemId('do_advanced_search')){
+        itemId('do_advanced_search').addEventListener('click', function(e){
+            e.preventDefault();
+
+            //$('#search_user_tags').val()
+
+            var session = setValue(itemId('logged_user_sesssion').value, false);
+            var age_min = setValue(itemId('search_user_age_gap_min').value, true);
+            var age_max = setValue(itemId('search_user_age_gap_max').value, true);
+            var fame_min = setValue(itemId('search_user_fame_gap_min').value, true);
+            var fame_max = setValue(itemId('search_user_fame_gap_max').value, true);
+            var location = setValue(itemId('search_user_location').value, false);
+            var order_by = setValue(itemId('order_by').value, false);
+            var sort_by = setValue(itemId('sort_by').value, false);
+            
+            advanced_search(session, age_min, age_max, fame_min, fame_max, location, order_by, sort_by);
         });
     }
 

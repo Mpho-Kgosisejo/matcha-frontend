@@ -81,8 +81,15 @@ input{
   border-bottom: 1px solid rgb(92, 152, 192);
 }
 
+.chip{
+  
+}
+
 .chip-block{
   width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .chip.chip-text-center, .alert.alert-text-center{
@@ -102,6 +109,11 @@ input{
 .chip.chip-info{
   color: rgb(92, 152, 192);
   background: rgb(209, 231, 240);
+}
+
+.chip.chip-warning{
+  color: rgb(202, 151, 84);
+  background: rgb(235, 218, 194);
 }
 
 #form_cnfrm_reg{
@@ -211,11 +223,15 @@ hr{
   position: absolute;
   right: 0;
   bottom: -18px;
-  z-index: 100;
+  z-index: 1;
   width: 36px;
   padding: 0;
   margin-right: 20px;
   border-radius: 50%;
+}
+
+.materialboxed{
+  z-index: 10000;
 }
 
 .card.search{
@@ -462,4 +478,59 @@ hr{
 
 #more .collapsible-body .collection-item{
   padding: 10px;
+}
+
+.suggestions .card .card-image{
+  height: 125px;
+  background: #525252;
+  background: url('https://placeimg.com/640/480/people');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.suggestions .card .fame{
+  width: 100%;
+  /*text-align: right;*/
+}
+
+.suggestions .card .fame i{
+  font-size: 17px;
+}
+
+.suggestions .card .card-content{
+  padding: 15px;
+}
+
+.suggestions .card .card-content h5 small span{
+  font-weight: 400;
+}
+
+.suggestions .card .card-title{
+  padding: 0;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  text-shadow: 0 0 5px #2b2b2b;
+}
+
+.suggestions .card .card-title a{
+  color: #fff;
+  font-weight: 100;
+}
+
+.suggestions .card .card-title a:hover{
+  text-decoration: underline;
+}
+
+.suggestions .card .card-title small span{
+  font-weight: 400;
+}
+
+.advanced_search_dropdown_btn_container{
+  text-align: right;
+}
+
+.advanced_search_dropdown_btn{
+  text-transform: none;
+  padding: 0 15px;
 }

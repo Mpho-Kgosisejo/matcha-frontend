@@ -23,13 +23,15 @@ router.get('/profile/:username', function(req, res, next) {
     var formdata = {username: req.params.username, session: _cookies.login_session};
 
     request.get(localStorage.getItem('api_url') + '/profile', {form: formdata}, function(err, resp, body){
+        //console.log(">> profile: ", body);
+
         try{
             body = JSON.parse(body);
         
             if (body.hasOwnProperty('response')){
                 data = body.data;
                 
-                console.log(body);
+                console.log(">> profile: ",body);
                 redirect.redirect(req, res, next, 'home/profile/profile', 'Profile', data, body.response.message);
             }else
                 res.redirect('/');

@@ -16,7 +16,7 @@ module.exports = {
           formdata = {session: _cookies.login_session, isSession: 1};
       
           request.post(localStorage.getItem('api_url') + '/login', {form: formdata}, function(err, resp, body){
-            //console.log(body);
+            //console.log('>> redirect: ', body);
       
             try{
               body = JSON.parse(body);
@@ -24,7 +24,7 @@ module.exports = {
               if (body.hasOwnProperty('response')){
           
                 if (body.response.state == 'true'){
-                  console.log(body.data);
+                  //console.log(body.data);
       
                   res.render(locate, {title: title, user_data: body.data, data: data, error: error});
                 }else{

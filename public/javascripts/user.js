@@ -163,6 +163,21 @@ function changepassword(session, pold, pnew){
     changepassword_request('/changepassword', 'POST', formdata);
 }
 
+function advanced_search(session, age_min, age_max, fame_min, fame_max, location, order_by, sort_by){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('age_min', age_min);
+    formdata.append('age_max', age_max);
+    formdata.append('fame_min', fame_min);
+    formdata.append('fame_max', fame_max);
+    formdata.append('location', location);
+    formdata.append('order_by', order_by);
+    formdata.append('sort_by', sort_by);
+    
+    advanced_search_request('/advanced-search', 'POST', formdata);
+}
+
 /*function send_mssg(username, box_id){
     input_box = 'mssg-input-' + box_id;
     session = '';

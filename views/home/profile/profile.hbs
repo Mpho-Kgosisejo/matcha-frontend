@@ -61,16 +61,30 @@
                     <!--</div>-->
                     <div class="card-content">
                         <div id="about" >
+                            <p><b>Address</b>: <br> {{data.address}}</p>
                             <p><b>Gender</b>: <br> {{data.gender}}</p>
                             <p><b>Date of Birth</b>: <br> {{data.date_of_birth}}</p>
                             <p><b>Sexual Preference</b>: <br> {{data.sexual_preference}}</p>
                             <p><b>Biography</b>: <br> {{data.biography}}</p>
+                            <div id="tags_container">
+                                <p><b>Tags</b>:</p>
+                                {{#if data.tags}}
+                                    {{#each data.tags}}
+                                        <div class="chip">
+                                            <a href="#{{tag}}">#{{tag}}</a>
+                                            <i class="close material-icons" onclick="delete_tag({{id}}, {{user_id}})">close</i>
+                                        </div>
+                                    {{/each}}
+                                {{else}}
+                                    <div class="chip chip-info" style="margin: 0;">You have no tags</div>
+                                {{/if}}
+                            </div>
                         </div>
                         <div id="photos" class="align-right">
                             {{#if data.images}}
                                 <div class="carousel carousel-slider">
                                     {{#each data.images}}
-                                        <a class="carousel-item" href="#code{{code}}!"><img src="{{url}}"></a>
+                                        <a class="carousel-item" href="#code{{code}}!"><img src="{{url}}" class=""></a>
                                     {{/each}}
                                 </div>
                                 <br>
@@ -81,54 +95,56 @@
                                 </div>
                             {{/if}}
                         </div>
-                        <div id="more" >
-                            {{#if data.likes_data}}
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header">
-                                            Likes
-                                            <span class="badge">{{data.likes_data.count}}</span>
-                                        </div>
-                                        <div class="collapsible-body white">
-                                            <ul class="collection">
-                                                {{#each data.likes_data.data}}
-                                                    <li class="collection-item">
-                                                        <div>
-                                                            {{username}}
-                                                            <span class="secondary-content">{{date_created}}</span>
-                                                        </div>
-                                                    </li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            {{/if}}
+                        {{#ifSame user_data.id data.id}}
+                            <div id="more" >
+                                {{#if data.likes_data}}
+                                    <ul class="collapsible" data-collapsible="accordion">
+                                        <li>
+                                            <div class="collapsible-header">
+                                                Likes
+                                                <span class="badge">{{data.likes_data.count}}</span>
+                                            </div>
+                                            <div class="collapsible-body white">
+                                                <ul class="collection">
+                                                    {{#each data.likes_data.data}}
+                                                        <li class="collection-item">
+                                                            <div>
+                                                                {{username}}
+                                                                <span class="secondary-content">{{date_created}}</span>
+                                                            </div>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                {{/if}}
 
-                            {{#if data.visits_data}}
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header">
-                                            <!--<i class="material-icons">filter_drama</i>-->
-                                            Views
-                                            <span class="badge">{{data.visits_data.count}}</span>
-                                        </div>
-                                        <div class="collapsible-body white">
-                                            <ul class="collection">
-                                                {{#each data.visits_data.data}}
-                                                    <li class="collection-item">
-                                                        <div>
-                                                            {{username}}
-                                                            <span class="secondary-content">{{date_created}}</span>
-                                                        </div>
-                                                    </li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            {{/if}}
-                        </div>
+                                {{#if data.visits_data}}
+                                    <ul class="collapsible" data-collapsible="accordion">
+                                        <li>
+                                            <div class="collapsible-header">
+                                                <!--<i class="material-icons">filter_drama</i>-->
+                                                Views
+                                                <span class="badge">{{data.visits_data.count}}</span>
+                                            </div>
+                                            <div class="collapsible-body white">
+                                                <ul class="collection">
+                                                    {{#each data.visits_data.data}}
+                                                        <li class="collection-item">
+                                                            <div>
+                                                                {{username}}
+                                                                <span class="secondary-content">{{date_created}}</span>
+                                                            </div>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                {{/if}}
+                            </div>
+                        {{/ifSame}}
                     </div>
                 </div>
             {{else}}
@@ -137,8 +153,10 @@
                 </div>
             {{/if}}
         </div>
+        {{#ifSame user_data.id data.id}}{{else}}
         <div class="col l5 s12">
             {{>suggestions}}
         </div>
+        {{/ifSame}}
     </div>
 </div>

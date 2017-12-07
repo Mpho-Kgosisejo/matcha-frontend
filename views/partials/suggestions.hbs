@@ -1,36 +1,56 @@
-<div class="card-panel">
+<div class="card-panel suggestions">
     <h5 class="font-slim">Suggestions</h5>
     <hr>
-    {{#if user_data.suggestions}}
-        {{#each user_data.suggestions}}
+    {{#if user_data.suggestions.message}}
+        {{#ifSame user_data.suggestions.message 'success'}}
+        {{else}}
+        <div class="chip chip-warning chip-block">{{user_data.suggestions.message}}</div>
+        {{/ifSame}}
+    {{/if}}
+    {{#if user_data.suggestions.data}}
+        {{#each user_data.suggestions.data}}
             <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://placeimg.com/420/420/nature">
-                </div>
-                <div class="card-content">
-                    <h5 class="font-slim"><a href="/profile/{{username}}">{{firstname}} {{lastname}}</a></h5>
-                    <!--
-                    <span class="card-title activator grey-text text-darken-4 font-slim">
-                        <small>about {{username}}</small>
-                        <i class="material-icons right">more_vert</i>
+                {{#if img1.url}}
+                    <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('{{img1.url}}')">
+                {{else}}
+                    <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png')">
+                {{/if}}
+                    <span class="card-title">
+                        <a href="/profile/{{username}}" class="font-slim">{{firstname}} {{lastname}}</a>
+                        <small>(<span>{{username}}</span>)</small>
                     </span>
-                    -->
-                    <span><i class="material-icons">star</i> 99%</span>
                 </div>
-                <!--
+
+                <div class="card-content">
+                    <div class="fame">
+                        <h5><span class="font-slim"><i class="material-icons">star</i> {{visits}}%</span></h5>
+                    </div>
+                </div>
+
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><small>about {{username}}</small><i class="material-icons right">close</i></span>
-                    <hr>
-                    <p>{{biography}}</p>
+                    <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                    
+                    <div style="width: 100%; margin-top: 15px;">
+                        {{#if address}}
+                            <span class="font-slim">address:</span>
+                            <br>
+                            {{address}}
+                        {{/if}}
+
+                        {{#if biography}}
+                        <hr>
+                            <span class="font-slim">biography:</span>
+                            <br>
+                            {{biography}}
+                        {{/if}}
+                    </div>
                 </div>
-                -->
-                 <!--<div class="card-action">...</div>-->
             </div>
         {{/each}}
     {{else}}
-        <div class="alert alert-info">
-        Could not find a match for you.<br>
+        <!--<div class="alert alert-info">
+            Could not find a match for you.<br>
             <small>How about you try to update your profile with more details.</small> 
-        </div>
+        </div>-->
     {{/if}}
 </div>

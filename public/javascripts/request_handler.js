@@ -27,8 +27,12 @@ function    login_request(_url, method, formdata){
                     document.location.reload(true);
                 }else{
                     autoScroll('#tabs-swipe-demo');
-                    itemId('login_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
+                    $('#login_err_mssg').slideUp('fast');
+                    $('#login_err_mssg').html(htmlAlert('danger', body.response.message));
+                    $('#login_err_mssg').slideDown('slow');                                        
+                    //itemId('login_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                 }
+                clear_input('access_password');
             }catch(e){
                 console.log(e);
             }
@@ -258,6 +262,39 @@ function    search_user_request(_url, method, formdata){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    
+                    put_search_results(body.data);
+                }else{
+                    //itemId('update_reporter').innerHTML = htmlAlert('danger', body.response.message);
+                }
+            }catch(e){
+                //itemId('update_reporter').innerHTML = htmlAlert('danger', 'Could not update profile at this time, try again later.');
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    advanced_search_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
