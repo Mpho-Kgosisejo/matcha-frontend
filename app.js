@@ -103,6 +103,6 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage('./scratch');
 }
 
-localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha/public');
+localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-backend/public');
 
 module.exports = app;

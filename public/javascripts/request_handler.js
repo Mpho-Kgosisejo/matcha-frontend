@@ -1,5 +1,5 @@
-localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-api');
-var site = 'http://127.0.0.1:8080/matcha';
+//localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-api');
+var site = 'http://127.0.0.1:8080/matcha-backend';
 var api = (site + '/public');
 
 function    login_request(_url, method, formdata){

@@ -482,8 +482,8 @@ hr{
 
 .suggestions .card .card-image{
   height: 125px;
-  background: #525252;
   background: url('https://placeimg.com/640/480/people');
+  background-color: #7a7a7a;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -533,4 +533,31 @@ hr{
 .advanced_search_dropdown_btn{
   text-transform: none;
   padding: 0 15px;
+}
+
+.carousel-item{
+  position: relative;
+}
+
+.like_profile{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  margin-bottom: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #fff;
+  text-shadow: 0 0 6px #000000;
+}
+
+.like_profile:hover{
+  color: rgb(211, 211, 211);
+  text-decoration: underline;
+  text-shadow: 0 0 8px #000000;
+}
+
+.like_profile.liked{
+  font-weight: bold;
 }
