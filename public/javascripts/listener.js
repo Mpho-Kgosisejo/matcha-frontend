@@ -264,6 +264,71 @@ $(document).ready(function(){
         });
     }
 
+    if (itemId('btn_next')){
+        itemId('btn_next').addEventListener('click', function(e){
+            e.preventDefault();
+            new_email = itemId('newemail').value;
+            old_email = itemId('oldemail').value;
+            error_container = itemId('email_change_error');
+
+            if (new_email){
+                if (validateEmail(new_email)){
+                    generate_token(itemId('logged_user_sesssion').value, new_email);
+                }else
+                    error_container.innerHTML = htmlChip('danger', 'Email not a valid email address');
+            }else
+                error_container.innerHTML = htmlChip('danger', 'New email can not be empty');
+        });
+    }
+
+    if (itemId('btn_change_email')){
+        itemId('btn_change_email').addEventListener('click', function(e){
+            e.preventDefault();
+            token = itemId('verify_token').value;
+            new_email = itemId('newemail').value;
+            session = itemId('logged_user_sesssion').value;
+
+            if (new_email){
+                change_email(session, new_email, token);
+            }else
+                itemId('verify_email_token_error').innerHTML = htmlChip('danger', 'Token can not be empty');
+            console.log();
+        });
+    }
+
+    $(".change_email_modal_class").click(function(){
+        user_email = $('#logged_user_email').val();
+
+        $('.change_email_form').html(
+            '<div class="row">' +
+                '<div id="email_container">' +
+                    '<div class="col s12">' +
+                        '<div id="email_change_error"></div>' +
+                    '</div>' +
+                    '<div class="input-field col s12">' +
+                        '<input id="oldemail" type="text" class="_validate" value="'+ user_email +'" disabled>' +
+                        //'<label for="oldemail" >Old email</label>' +
+                    '</div>' +
+                    '<div class="input-field col s12">' +
+                        '<input type="email" class="_validate" id="newemail">' +
+                        '<label for="newemail" >New email</label>' +
+                    '</div>' +
+                '</div>' +
+                '<div id="verify_email_token_container">' +
+                    '<div class="col s12">' +
+                        '<div id="verify_email_token_error">' +
+                            '<div class="chip chip-info chip-block">Check your mail for the token</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="input-field col s12">' +
+                        '<input id="verify_token" type="text" class="_validate">' +
+                        '<label for="verify_token" >Enter token</label>' +
+                    '</div>' +
+                '</div>' +
+            '</div>'
+        );
+    });
+
     /*if (itemId('')){
         itemId('').addEventListener('click', function(e){
 

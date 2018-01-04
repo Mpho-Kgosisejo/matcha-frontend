@@ -16,6 +16,8 @@
             <li><a href="/connections">My Connections</a></li>
             <li class="divider"></li>
             <li><a href="#changepassword_modal" class="modal-trigger">Change password</a></li>
+            <li><a href="#change_email_modal" class="modal-trigger change_email_modal_class">Change email</a></li>
+            <li class="divider"></li>
             <li><a cls href="/logout">logout</a></li>
         </ul>
 
@@ -54,6 +56,8 @@
             <li><a href="/connections">My Connections</a></li>
             <li class="divider"></li>
             <li><a href="#changepassword_modal" class="modal-trigger">Change password</a></li>
+            <li><a href="#change_email_modal" class="modal-trigger change_email_modal_class">Change email</a></li>
+            <li class="divider"></li>
             <li><a href="/logout">logout <i class="material-icons right" style="margin: 0">power_settings_new</i></a></li>
             <li class="divider"></li>
             <li><a class="subheader center-align"><small class="text-mute">author: Mpho Kgosisejo</small></a></li>
@@ -65,10 +69,11 @@
 <input type="hidden" id="logged_user_sesssion" value="{{user_data.session}}">
 <input type="hidden" id="logged_user" value="{{user_data.username}}">
 <input type="hidden" id="logged_user_id" value="{{user_data.id}}">
+<input type="hidden" id="logged_user_email" value="{{user_data.email}}">
 
 <div id="changepassword_modal" class="modal">
     <div class="modal-content">
-        <h5 class="font-slim">Change password</h5>
+        <h5 class="font-slim">Change Password</h5>
         <hr>
         <form class="">
             <div class="row">
@@ -88,7 +93,49 @@
     </div>
     <div class="modal-footer">
         <a href="#" id="btn_changepassword" class="modal-action waves-effect waves-green btn-flat">Change</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancle</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
+</div>
+
+<div id="change_email_modal" class="modal">
+    <div class="modal-content">
+        <h5 class="font-slim">Change Email</h5>
+        <hr>
+        <form class="change_email_form">
+            <!--
+            <div class="row">
+                <div class="email_container">
+                    <div class="col s12">
+                        <div id="email_change_error"></div>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="oldemail" type="email" class="_validate" value="{{user_data.email}}" disabled>
+                        <label for="oldemail" >Old email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="email" class="_validate" id="newemail">
+                        <label for="newemail" >New email</label>
+                    </div>
+                </div>
+                <div id="verify_email_token_container">
+                    <div class="col s12">
+                        <div id="verify_email_token_error">
+                            <div class="chip chip-info chip-block">Check your mail for the token</div>
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="verify_token" type="text" class="_validate">
+                        <label for="verify_token" >Enter token</label>
+                    </div>
+                </div>
+            </div>
+            -->
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" id="btn_next" class="modal-action waves-effect waves-green btn-flat">Next</a>
+        <a href="#" id="btn_change_email" class="modal-action waves-effect waves-green btn-flat">Change</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
     </div>
 </div>
 

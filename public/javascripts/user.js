@@ -178,6 +178,25 @@ function advanced_search(session, age_min, age_max, fame_min, fame_max, location
     advanced_search_request('/advanced-search', 'POST', formdata);
 }
 
+function generate_token(session, new_email){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('new_email', new_email);
+
+    generate_token_request('/generate-user-token', 'POST', formdata);
+}
+
+function change_email(session, new_email, token){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('new_email', new_email);
+    formdata.append('token', token);
+
+    change_email_request('/change-email', 'POST', formdata);
+}
+
 /*function send_mssg(username, box_id){
     input_box = 'mssg-input-' + box_id;
     session = '';

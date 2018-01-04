@@ -568,3 +568,74 @@ function    changepassword_request(_url, method, formdata){
     }
     _http.send(formdata);
 }
+
+function    generate_token_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    $('#verify_email_token_container').slideDown('slow');
+                    $('#email_container').slideUp('fast');
+                    $('#btn_next').hide();
+                    $('#btn_change_email').show();
+                }else{
+                   itemId('email_change_error').innerHTML = htmlChip('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    change_email_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+            console.log(_http.responseText);
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    $('#change_email_modal').modal('close');
+                    Materialize.toast('Email changed successfully', 4000);
+                    
+                    setTimeout(function(){
+                        document.location.reload();
+                    }, 5000);
+                }else{
+                   itemId('').innerHTML = htmlChip('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
