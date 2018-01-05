@@ -562,10 +562,10 @@ hr{
   font-weight: bold;
 }
 
-#btn_change_email{
+#btn_change_email, #verify_email_token_container, #forgotpassword_btn_continue{
   display: none;
 }
 
-#verify_email_token_container{
-  display: none;
+.modal .modal-footer{
+  border-top: 1px solid rgb(206, 206, 206);
 }

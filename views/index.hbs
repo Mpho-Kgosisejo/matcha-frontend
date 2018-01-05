@@ -46,6 +46,8 @@
                                             <label for="password" >Password</label>
                                         </div>
                                     </div>
+                                    <small><a href="#forgot_password_modal" class="modal-trigger" id="load_forgotpassword">forgot password</a></small>
+                                    <br><br>
                                     <button class="btn btn-block waves-effect waves-light" type="submit" name="action" id="log_user">Login</button>
                                 </form>
                             </div>
@@ -97,4 +99,41 @@
 <div class="container">
     ...
     <hr>
+</div>
+
+<div id="forgot_password_modal" class="modal">
+    <div class="modal-content">
+        <h5 class="font-slim">Forgot Password</h5>
+        <hr>
+        <form class="forgotpassword_container">
+            <div class="row">
+                <div class="forgotpassword_generate_token_container">
+                    <div class="col s12">
+                        <div id="verify_forgotpassword_error"></div>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="forgotpassword_email" type="email" class="_validate">
+                        <label for="forgotpassword_email" >Email</label>
+                    </div>
+                </div>
+
+                <!--<div id="forgotpassword_inputs_container">
+                    <div class="col s12">
+                        <div id="verify_forgotpassword_error">
+                            <div class="chip chip-info chip-block">Check your mail for the token</div>
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="verify_forgotpassword_token" type="text" class="_validate">
+                        <label for="verify_forgotpassword_token" >Enter token</label>
+                    </div>
+                </div>-->
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" id="forgotpassword_btn_next" class="modal-action waves-effect waves-green btn-flat">Next</a>
+        <a href="#" id="forgotpassword_btn_continue" class="modal-action waves-effect waves-green btn-flat">Change</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
 </div>

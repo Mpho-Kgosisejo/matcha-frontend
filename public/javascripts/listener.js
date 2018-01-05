@@ -329,6 +329,25 @@ $(document).ready(function(){
         );
     });
 
+    if (itemId('forgotpassword_btn_next')){
+        itemId('forgotpassword_btn_next').addEventListener('click', function(e){
+            email = itemId('forgotpassword_email').value;
+
+            if (email){
+                if (!validateEmail(email))
+                    itemId('verify_forgotpassword_error').innerHTML =  htmlChip('danger', 'Email not a valid email address');
+                else
+                    generate_token('', email);
+            }else
+                $('#verify_forgotpassword_error').html(htmlChip('danger', 'New email can not be empty'));
+        });
+    }
+    
+    $('#load_forgotpassword').click(function(){
+        itemId('forgotpassword_email').value = '';
+        $('#verify_forgotpassword_error').html('');
+    });
+
     /*if (itemId('')){
         itemId('').addEventListener('click', function(e){
 
