@@ -562,7 +562,8 @@ hr{
   font-weight: bold;
 }
 
-#btn_change_email, #verify_email_token_container, #forgotpassword_btn_continue{
+#btn_change_email, #verify_email_token_container,
+#forgotpassword_btn_continue, #forgotpassword_inputs_container{
   display: none;
 }
 

@@ -1,5 +1,5 @@
 //localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-api');
-var site = 'http://127.0.0.1:8080/matcha-backend';
+var site = 'http://127.0.0.1:8383/matcha-backend';
 var api = (site + '/public');
 
 function    login_request(_url, method, formdata){
@@ -617,7 +617,6 @@ function    change_email_request(_url, method, formdata){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
@@ -631,6 +630,72 @@ function    change_email_request(_url, method, formdata){
                     }, 5000);
                 }else{
                    itemId('').innerHTML = htmlChip('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    generate_token_forgotpassword_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    $('#forgotpassword_inputs_container').slideDown('slow');
+                    $('.forgotpassword_generate_token_container').slideUp('fast');
+                    $('#forgotpassword_btn_next').hide();
+                    $('#forgotpassword_btn_continue').show();
+                }else{
+                   itemId('verify_forgotpassword_error').innerHTML = htmlChip('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    continue_forgotpassword_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+            console.log(_http.responseText);
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    window.location = '/change-password/' + body.data.token + '/' + body.data.email;
+                }else{
+                   itemId('verify_forgotpassword_error').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
                 console.log(e);

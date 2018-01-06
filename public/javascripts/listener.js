@@ -337,15 +337,25 @@ $(document).ready(function(){
                 if (!validateEmail(email))
                     itemId('verify_forgotpassword_error').innerHTML =  htmlChip('danger', 'Email not a valid email address');
                 else
-                    generate_token('', email);
+                    generate_token_forgotpassword('', email);
             }else
-                $('#verify_forgotpassword_error').html(htmlChip('danger', 'New email can not be empty'));
+                $('#verify_forgotpassword_error').html(htmlChip('danger', 'Email can not be empty'));
         });
     }
     
     $('#load_forgotpassword').click(function(){
         itemId('forgotpassword_email').value = '';
         $('#verify_forgotpassword_error').html('');
+    });
+
+    $('#forgotpassword_btn_continue').click(function(){
+        token = itemId('verify_forgotpassword_token').value;
+        email = itemId('forgotpassword_email').value;
+
+        if (token){
+            continue_forgotpassword(token, email);
+        }else
+            $('#verify_forgotpassword_error').html(htmlChip('danger', 'Token can not be empty'));
     });
 
     /*if (itemId('')){

@@ -187,6 +187,15 @@ function generate_token(session, new_email){
     generate_token_request('/generate-user-token', 'POST', formdata);
 }
 
+function generate_token_forgotpassword(session, new_email){
+    var formdata = new FormData();
+
+    formdata.append('session', session);
+    formdata.append('new_email', new_email);
+
+    generate_token_forgotpassword_request('/generate-user-token', 'POST', formdata);
+}
+
 function change_email(session, new_email, token){
     var formdata = new FormData();
 
@@ -194,7 +203,16 @@ function change_email(session, new_email, token){
     formdata.append('new_email', new_email);
     formdata.append('token', token);
 
-    change_email_request('/change-email', 'POST', formdata);
+    forgot_password_request('/change-email', 'POST', formdata);
+}
+
+function continue_forgotpassword(token, email){
+    var formdata = new FormData();
+
+    formdata.append('email', email);
+    formdata.append('token', token);
+
+    continue_forgotpassword_request('/verify-token-forgotpassword', 'POST', formdata);
 }
 
 /*function send_mssg(username, box_id){
