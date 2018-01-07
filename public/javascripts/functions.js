@@ -186,3 +186,22 @@ function activate_places_search(){
     var autocomplete = new google.maps.places.Autocomplete(input);
 
 }
+
+function set_FlashMessage(mssg){
+    localStorage.setItem('flash_message', mssg);
+}
+
+function put_FlashMessage(length = 3000){
+    Materialize.toast(localStorage.getItem('flash_message'), length);
+    clear_FlashMessage();
+}
+
+function clear_FlashMessage(){
+    localStorage.removeItem('flash_message');
+}
+function auto_put_FlashMessage(){
+    if (localStorage.getItem('flash_message'))
+        put_FlashMessage(4000);
+}
+
+auto_put_FlashMessage();

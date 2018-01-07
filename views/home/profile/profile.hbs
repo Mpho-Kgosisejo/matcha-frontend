@@ -46,7 +46,11 @@
                                 {{/if}}
                                 <li class="divider"></li>
                                 <li><a class="modal-trigger" href="#report" onclick="ready_user_report({{data.id}} ,'{{data.username}}')">Report</a></li>
-                                <li><a onclick="block_user('{{user_data.session}}', {{data.id}})">Block</a></li>
+                                {{#if data.blocked_user}}
+                                    <li><a onclick="unblock_user('{{user_data.session}}', '{{data.username}}')"><b>Unblock</b></a></li>
+                                {{else}}
+                                    <li><a onclick="block_user('{{user_data.session}}', '{{data.username}}')">Block</a></li>
+                                {{/if}}
                             {{/ifSame}}
                         </ul>
                     </div>

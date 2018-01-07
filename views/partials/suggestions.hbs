@@ -9,43 +9,46 @@
     {{/if}}
     {{#if user_data.suggestions.data}}
         {{#each user_data.suggestions.data}}
-            <div class="card">
-                {{#if img1.url}}
-                    <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('{{img1.url}}')">
-                {{else}}
-                    <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png')">
-                {{/if}}
-                    <span class="card-title">
-                        <a href="/profile/{{username}}" class="font-slim">{{firstname}} {{lastname}}</a>
-                        <small>(<span>{{username}}</span>)</small>
-                    </span>
-                </div>
+            {{#if bloked_user}}
+            {{else}}
+                <div class="card">
+                    {{#if img1.url}}
+                        <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('{{img1.url}}')">
+                    {{else}}
+                        <div class="card-image waves-effect waves-block waves-light activator" style="background-image: url('https://www.liu-usa.com/_layouts/15/images/PersonPlaceholder.200x150x32.png')">
+                    {{/if}}
+                        <span class="card-title">
+                            <a href="/profile/{{username}}" class="font-slim">{{firstname}} {{lastname}}</a>
+                            <small>(<span>{{username}}</span>)</small>
+                        </span>
+                    </div>
 
-                <div class="card-content">
-                    <div class="fame">
-                        <h5><span class="font-slim"><i class="material-icons">star</i> {{visits}}%</span></h5>
+                    <div class="card-content">
+                        <div class="fame">
+                            <h5><span class="font-slim"><i class="material-icons">star</i> {{visits}}%</span></h5>
+                        </div>
+                    </div>
+
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                        
+                        <div style="width: 100%; margin-top: 15px;">
+                            {{#if address}}
+                                <span class="font-slim">address:</span>
+                                <br>
+                                {{address}}
+                            {{/if}}
+
+                            {{#if biography}}
+                            <hr>
+                                <span class="font-slim">biography:</span>
+                                <br>
+                                {{biography}}
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-                    
-                    <div style="width: 100%; margin-top: 15px;">
-                        {{#if address}}
-                            <span class="font-slim">address:</span>
-                            <br>
-                            {{address}}
-                        {{/if}}
-
-                        {{#if biography}}
-                        <hr>
-                            <span class="font-slim">biography:</span>
-                            <br>
-                            {{biography}}
-                        {{/if}}
-                    </div>
-                </div>
-            </div>
+            {{/if}}
         {{/each}}
     {{else}}
         <!--<div class="alert alert-info">

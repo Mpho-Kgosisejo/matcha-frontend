@@ -70,21 +70,28 @@ function report_user(session, userid, mssg, output_id){
     var formdata = new FormData();
 
     formdata.append('session', session);
-    formdata.append('userid', userid);
-    formdata.append('report_message', mssg);
+    formdata.append('user_id_to', userid);
+    formdata.append('desc', mssg);
 
-    console.log('id: ', userid, ' mssg: ', mssg, ' session: ', session);
-    //connect_to_user_request('/report-user', 'POST', formdata);
+    report_user_request('/report-user', 'POST', formdata);
 }
 
-function block_user(session, user){
+function block_user(session, user_name){
     var formdata = new FormData();
     
     formdata.append('session', session);
-    formdata.append('userid', user);
+    formdata.append('username', user_name);
 
-    console.log('session: ', session, ' id: ', user);
-    //connect_to_user_request('/block-user', 'POST', formdata);
+    block_user_request('/block-user', 'POST', formdata);
+}
+
+function unblock_user(session, user_name){
+    var formdata = new FormData();
+    
+    formdata.append('session', session);
+    formdata.append('username', user_name);
+
+    unblock_user_request('/unblock-user', 'POST', formdata);
 }
 
 function ready_chat(header, id, userId){
@@ -213,6 +220,16 @@ function continue_forgotpassword(token, email){
     formdata.append('token', token);
 
     continue_forgotpassword_request('/verify-token-forgotpassword', 'POST', formdata);
+}
+
+function change_forgotpassword(email, token, pass){
+    var formdata = new FormData();
+
+    formdata.append('email', email);
+    formdata.append('token', token);
+    formdata.append('password', pass);
+
+    change_forgotpassword_request('/change-forgotpassword', 'POST', formdata);
 }
 
 /*function send_mssg(username, box_id){

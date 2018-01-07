@@ -23,7 +23,6 @@ router.get('/logout', function(req, res, next) {
     formdata = data = {session: _cookies.login_session, isSession: 1};
     
     request.get(localStorage.getItem('api_url') + '/logut', {form: formdata}, function(err, resp, body){
-      //console.log(body);
       res.redirect('/');
     });
   }else

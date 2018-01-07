@@ -358,6 +358,40 @@ $(document).ready(function(){
             $('#verify_forgotpassword_error').html(htmlChip('danger', 'Token can not be empty'));
     });
 
+    if (itemId('btn_change_password')){
+        itemId('btn_change_password').addEventListener('click', function(e){
+            e.preventDefault();
+            
+            error = '';
+            token = itemId('change_password_token').value;
+            email = itemId('change_password_email').value;
+            new_pass = itemId('new_password').value;
+            confirm_pass = itemId('confirm_password').value;
+
+            if (!token || !email)
+                error += 'Token or Email are somehow empty;';
+            if (!new_pass)
+                error += 'New Password can not be empty;';
+            if (!confirm_pass)
+                error += 'Confirm Password can not be empty;';
+            if (new_pass && confirm_pass){
+                if (new_pass !== confirm_pass)
+                    error += 'New Password and Confirm Password do not match;';
+            }
+            if (new_pass)
+                if (new_pass.length < 6)
+                    error += 'Password should be 6 Characters minimum;';
+
+            put_errors('change_password_error', '#change_password_error', error);
+            if (!error)
+                change_forgotpassword(email, token, new_pass);
+            else{
+                itemId('new_password').value = '';
+                itemId('confirm_password').value = '';
+            }
+        });
+    }
+
     /*if (itemId('')){
         itemId('').addEventListener('click', function(e){
 

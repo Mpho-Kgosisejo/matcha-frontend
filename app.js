@@ -63,6 +63,7 @@ var message = require('./routes/home/message/message');
 var confirm_reg = require('./routes/confirm-registration');
 var friends = require('./routes/home/friends/friends');
 var profile = require('./routes/home/profile/profile');
+var change_password = require('./routes/change-password');
 
 app.use('/', index);
 app.use('/', home);
@@ -71,6 +72,7 @@ app.use(message);
 app.use(confirm_reg);
 app.use(friends);
 app.use(profile);
+app.use(change_password);
 
 //Building routes
 _bundle.build_routes.ft_build_routes(
@@ -103,6 +105,6 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage('./scratch');
 }
 
-localStorage.setItem('api_url', 'http://127.0.0.1:8383/matcha-backend/public');
+localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-backend/public');
 
 module.exports = app;

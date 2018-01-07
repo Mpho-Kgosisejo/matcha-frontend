@@ -1,14 +1,15 @@
 module.exports = {
     ft_build_routes: function(app, path = '.', routes){
-        console.log('building routes... ');
+        //console.log('building routes... ');
         builder(app, routes, path);
-        console.log('building routes complete');
+        //console.log('building routes complete');
     }
 };
 
 function builder(app, routes, path = ''){
     //Temp...
-    console.log('test');
+    //console.log('test');
+    console.log('App ready...');
     return ;
 
     if (!isObject(routes))

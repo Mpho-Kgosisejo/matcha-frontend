@@ -1,5 +1,5 @@
 //localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-api');
-var site = 'http://127.0.0.1:8383/matcha-backend';
+var site = 'http://127.0.0.1:8080/matcha-backend';
 var api = (site + '/public');
 
 function    login_request(_url, method, formdata){
@@ -687,7 +687,6 @@ function    continue_forgotpassword_request(_url, method, formdata){
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
@@ -699,6 +698,142 @@ function    continue_forgotpassword_request(_url, method, formdata){
                 }
             }catch(e){
                 console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    change_forgotpassword_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    set_FlashMessage('Password changed successfully, you can now login');
+                    window.location = '/';
+                }else{
+                   itemId('change_password_error').innerHTML = htmlChip('danger', body.response.message);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    block_user_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    set_FlashMessage(body.response.message);
+                    document.location.reload(true);
+                }else{
+                   Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+                Materialize.toast('Could not block user at this time, please try again', 4000);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    unblock_user_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    set_FlashMessage(body.response.message);
+                    document.location.reload(true);
+                }else{
+                   Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+                Materialize.toast('Could not unblock user at this time, please try again', 4000);
+            }
+        }
+    }
+    _http.send(formdata);
+}
+
+function    report_user_request(_url, method, formdata){
+    var _http = new XMLHttpRequest();
+    
+    _http.open(method, (api + _url), true);
+    _http.setRequestHeader('Accept', 'application/json');
+    _http.onload = function(){
+        if (_http.status == 200){
+            //console.log('ok');
+        }else{
+            //console.log('error');
+        }
+    }
+    _http.onreadystatechange = function(){
+        if (_http.readyState == 4 && _http.status == 200){
+
+            try{
+                body = JSON.parse(_http.responseText);
+
+                if (body.response.state == 'true'){
+                    $('#report').modal('close');
+                    if (body.data){
+                        set_FlashMessage(body.response.message);
+                        document.location.reload(true);
+                    }
+                    Materialize.toast(body.response.message, 4000);
+                    itemId('report_mssg').value = '';
+                }else{
+                   Materialize.toast(body.response.message, 4000);
+                }
+            }catch(e){
+                console.log(e);
+                Materialize.toast('Could not report user at this time, please try again', 4000);
             }
         }
     }

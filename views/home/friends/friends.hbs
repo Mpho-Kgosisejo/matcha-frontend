@@ -88,14 +88,17 @@
                 {{#if data}}
                     {{#each data}}
                         {{#ifSame user_id ../user_data.id}}{{else}}
-                            <div class="connections collection">
-                                <a href="/profile/{{username}}" class="collection-item">
-                                    {{username}}
-                                    <span class="badge">
-                                        <div class="user-offline" id="{{username}}-online"></div>
-                                    </span>
-                                </a>
-                            </div>
+                            {{#if bloked_user}}
+                            {{else}}
+                                <div class="connections collection">
+                                    <a href="/profile/{{username}}" class="collection-item">
+                                        {{username}}
+                                        <span class="badge">
+                                            <div class="user-offline" id="{{username}}-online"></div>
+                                        </span>
+                                    </a>
+                                </div>
+                            {{/if}}
                         {{/ifSame}}
                     {{/each}}
                 {{else}}
