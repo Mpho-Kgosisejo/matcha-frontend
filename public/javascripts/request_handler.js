@@ -335,12 +335,15 @@ function    connect_to_user_request(_url, method, formdata){
                     response_mssg = body.response.message;
                     
                     if (response_mssg === 'connected'){
-                        Materialize.toast('Connection sent', 4000);
-                        itemId('users_relationship').innerHTML = '<b>Cancel connection</b>';
+                        //Materialize.toast('Connection sent', 4000);
+                        //itemId('users_relationship').innerHTML = '<b>Cancel connection</b>';
+                        set_FlashMessage('Connection sent');
                     }else{
-                        Materialize.toast('Unconnected to user', 4000);
-                        itemId('users_relationship').innerHTML = 'Connect';
+                        //Materialize.toast('Unconnected to user', 4000);
+                        //itemId('users_relationship').innerHTML = 'Connect';
+                        set_FlashMessage('Unconnected to user');
                     }
+                    document.location.reload(true);
                     return ;
                 }else{
                     Materialize.toast(body.response.message, 4000);

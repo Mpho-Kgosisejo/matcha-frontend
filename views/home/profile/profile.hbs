@@ -42,15 +42,21 @@
                                         {{/ifSame}}
                                     {{/ifSame}}
                                 {{else}}
-                                    <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 0)" id="users_relationship">Connect</a></li>
+                                    {{#if user_data.img1.url}}
+                                        {{#if data.img1.url}}
+                                            <li><a onclick="connect_to_user('{{user_data.session}}', '{{data.username}}', 0)" id="users_relationship">Connect</a></li>
+                                        {{/if}}
+                                    {{/if}}
                                 {{/if}}
-                                <li class="divider"></li>
-                                <li><a class="modal-trigger" href="#report" onclick="ready_user_report({{data.id}} ,'{{data.username}}')">Report</a></li>
-                                {{#if data.blocked_user}}
-                                    <li><a onclick="unblock_user('{{user_data.session}}', '{{data.username}}')"><b>Unblock</b></a></li>
-                                {{else}}
-                                    <li><a onclick="block_user('{{user_data.session}}', '{{data.username}}')">Block</a></li>
-                                {{/if}}
+                                {{#ifSame data.relationship.status '1'}}
+                                    <li class="divider"></li>
+                                    <li><a class="modal-trigger" href="#report" onclick="ready_user_report({{data.id}} ,'{{data.username}}')">Report</a></li>
+                                    {{#if data.blocked_user}}
+                                        <li><a onclick="unblock_user('{{user_data.session}}', '{{data.username}}')"><b>Unblock</b></a></li>
+                                    {{else}}
+                                        <li><a onclick="block_user('{{user_data.session}}', '{{data.username}}')">Block</a></li>
+                                    {{/if}}
+                                {{/ifSame}}
                             {{/ifSame}}
                         </ul>
                     </div>
@@ -120,7 +126,7 @@
                                                     {{#each data.likes_data.data}}
                                                         <li class="collection-item">
                                                             <div>
-                                                                {{username}}
+                                                                <a href="/profile/{{username}}">{{username}}</a>
                                                                 <span class="secondary-content">{{date_created}}</span>
                                                             </div>
                                                         </li>
@@ -144,7 +150,7 @@
                                                     {{#each data.visits_data.data}}
                                                         <li class="collection-item">
                                                             <div>
-                                                                {{username}}
+                                                                <a href="/profile/{{username}}">{{username}}</a>
                                                                 <span class="secondary-content">{{date_created}}</span>
                                                             </div>
                                                         </li>

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
 var hbss = require('hbs');
+var request = require('request');
 
 var routes_config = require('./routes/_config');
 var _bundle = require('./functions/_bundle');
@@ -106,5 +107,19 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 }
 
 localStorage.setItem('api_url', 'http://127.0.0.1:8080/matcha-backend/public');
+
+request.get(localStorage.getItem('api_url') + '/setup/all', {}, function(err, resp, body){
+  try{
+    body = JSON.parse(body);
+
+    if (body.hasOwnProperty('response')){
+
+      console.log("Database Status:", body.response.message);
+    }else
+      console.log("Error creating Database");
+  }catch(e){
+    console.log("Error creating Database: ", e);
+  }
+});
 
 module.exports = app;
