@@ -9,9 +9,9 @@ function    login_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -34,26 +34,11 @@ function    login_request(_url, method, formdata){
                 }
                 clear_input('access_password');
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
     _http.send(formdata);
-
-    /*$.ajax({
-        type: method,
-        url: api + _url,
-        crossDomain: true,
-        data: formdata,
-        contentType: "application/json; charset=utf-8",
-        error: function() {
-            console.log('err');
-        },
-        dataType: 'jsonp',
-        success: function(data) {
-            console.log('ok');
-        }
-     });*/
 }
 
 function    register_request(_url, method, formdata){
@@ -63,31 +48,36 @@ function    register_request(_url, method, formdata){
         _http.setRequestHeader('Accept', 'application/json');
         _http.onload = function(){
             if (_http.status == 200){
-                //console.log('ok');
+                ////console.log('ok');
             }else{
-                //console.log('error');
+                ////console.log('error');
             }
         }
         _http.onreadystatechange = function(){
             if (_http.readyState == 4 && _http.status == 200){
                 try{
                     body = JSON.parse(_http.responseText);
-                    console.log(body);
                     
                     if (body.response.state == 'true'){
-                        console.log('Ok');
+                        //console.log('Ok');
                         $text = '<h5 class="small-font">You were successully registered.</h5>' +
                                 'A <b>confirmation code</b> was sent to you via email.' +
                                 '<br>' +
                                 '<small>complete the confirmation at this link: <a href="/confirm-registration">Confirm Registration</a></small>'; 
-
                         itemId('reg_err_mssg').innerHTML = htmlAlert('success', $text);
+
+                        itemId('reg_first_name').value = '';
+                        itemId('reg_last_name').value = '';
+                        itemId('reg_username').value = '';
+                        itemId('reg_email').value = '';
+                        itemId('reg_password').value = '';
+                        itemId('dob').value = '';
                     }else{
                         itemId('reg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                     }
                     autoScroll('#tabs-swipe-demo');
                 }catch(e){
-                    console.log(e);
+                    //console.log(e);
                 }
             }
         }
@@ -101,26 +91,24 @@ function    confirm_registration(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
             try{
                 body = JSON.parse(_http.responseText);
-                console.log(body);
                 
                 if (body.response.state == 'true'){
-                    console.log('Ok');
                     itemId('cnfrm_reg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);;
                     
                 }else{
                     itemId('cnfrm_reg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -134,27 +122,28 @@ function    confirm_reg_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
             try{
                 body = JSON.parse(_http.responseText);
-                console.log(body);
                 
                 if (body.response.state == 'true'){
-                    console.log(body);
                     $text = '<h5 class="small-font">Confirmation successful</h5>' +
                             'You can now <a href="/">login</a>';
                     itemId('reporter').innerHTML = htmlAlert('success', $text);
+
+                    set_FlashMessage("Confirmation Successful. You can now log");
+                    window.location = '/';
                 }else{
                     itemId('reporter').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -168,9 +157,9 @@ function    update_profile_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -207,9 +196,9 @@ function    upload_file_request(_url, method, formdata, name, previewId){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -220,7 +209,6 @@ function    upload_file_request(_url, method, formdata, name, previewId){
 
                 if (body.response.state == 'true'){
                     data = body.data;
-                    //src = site + '/' + data.url;
                     src = data.url;
                     
                     itemId(previewId).src = src;
@@ -238,7 +226,7 @@ function    upload_file_request(_url, method, formdata, name, previewId){
                     itemId('upload_profile_images_reporter').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                console.log('Catch', e);
+                //console.log('Catch', e);
                 autoScroll('.upload-profile-images');
                 itemId('upload_profile_images_reporter').innerHTML = htmlAlert('danger', 'Could not upload '+ name +' photo at this time, try again later.');
             }
@@ -255,9 +243,9 @@ function    search_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -287,14 +275,13 @@ function    advanced_search_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
         if (_http.readyState == 4 && _http.status == 200){
-            console.log(_http.responseText);
 
             try{
                 body = JSON.parse(_http.responseText);
@@ -304,6 +291,7 @@ function    advanced_search_request(_url, method, formdata){
                     put_search_results(body.data);
                 }else{
                     //itemId('update_reporter').innerHTML = htmlAlert('danger', body.response.message);
+                    put_search_results(false);
                 }
             }catch(e){
                 //itemId('update_reporter').innerHTML = htmlAlert('danger', 'Could not update profile at this time, try again later.');
@@ -320,9 +308,9 @@ function    connect_to_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -349,7 +337,7 @@ function    connect_to_user_request(_url, method, formdata){
                     Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -363,9 +351,9 @@ function    get_chat_request(_url, method, formdata, divId, user_id){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -393,7 +381,7 @@ function    get_chat_request(_url, method, formdata, divId, user_id){
                     
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -407,9 +395,9 @@ function    send_message_request(_url, method, formdata, inputId){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -425,7 +413,7 @@ function    send_message_request(_url, method, formdata, inputId){
                     
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -439,9 +427,9 @@ function    add_tag_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -461,7 +449,7 @@ function    add_tag_request(_url, method, formdata){
                     Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -475,9 +463,9 @@ function    delete_tag_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -500,7 +488,7 @@ function    delete_tag_request(_url, method, formdata){
                     Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -514,9 +502,9 @@ function    tarck_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -531,7 +519,7 @@ function    tarck_user_request(_url, method, formdata){
                     Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -545,9 +533,9 @@ function    changepassword_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -565,7 +553,7 @@ function    changepassword_request(_url, method, formdata){
                    itemId('pswdchg_err_mssg').innerHTML = htmlAlert('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -579,9 +567,9 @@ function    generate_token_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -599,7 +587,7 @@ function    generate_token_request(_url, method, formdata){
                    itemId('email_change_error').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -613,9 +601,9 @@ function    change_email_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -635,7 +623,7 @@ function    change_email_request(_url, method, formdata){
                    itemId('').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -649,9 +637,9 @@ function    generate_token_forgotpassword_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -669,7 +657,7 @@ function    generate_token_forgotpassword_request(_url, method, formdata){
                    itemId('verify_forgotpassword_error').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -683,9 +671,9 @@ function    continue_forgotpassword_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -700,7 +688,7 @@ function    continue_forgotpassword_request(_url, method, formdata){
                    itemId('verify_forgotpassword_error').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -714,9 +702,9 @@ function    change_forgotpassword_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -732,7 +720,7 @@ function    change_forgotpassword_request(_url, method, formdata){
                    itemId('change_password_error').innerHTML = htmlChip('danger', body.response.message);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
             }
         }
     }
@@ -746,9 +734,9 @@ function    block_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -764,7 +752,7 @@ function    block_user_request(_url, method, formdata){
                    Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
                 Materialize.toast('Could not block user at this time, please try again', 4000);
             }
         }
@@ -779,9 +767,9 @@ function    unblock_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -797,7 +785,7 @@ function    unblock_user_request(_url, method, formdata){
                    Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
                 Materialize.toast('Could not unblock user at this time, please try again', 4000);
             }
         }
@@ -812,9 +800,9 @@ function    report_user_request(_url, method, formdata){
     _http.setRequestHeader('Accept', 'application/json');
     _http.onload = function(){
         if (_http.status == 200){
-            //console.log('ok');
+            ////console.log('ok');
         }else{
-            //console.log('error');
+            ////console.log('error');
         }
     }
     _http.onreadystatechange = function(){
@@ -835,7 +823,7 @@ function    report_user_request(_url, method, formdata){
                    Materialize.toast(body.response.message, 4000);
                 }
             }catch(e){
-                console.log(e);
+                //console.log(e);
                 Materialize.toast('Could not report user at this time, please try again', 4000);
             }
         }

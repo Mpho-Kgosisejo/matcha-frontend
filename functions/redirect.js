@@ -16,7 +16,7 @@ module.exports = {
           formdata = {session: _cookies.login_session, isSession: 1};
       
           request.post(localStorage.getItem('api_url') + '/login', {form: formdata}, function(err, resp, body){
-            //console.log('>> redirect: ', body);
+            console.log('>> redirect: ', body, formdata);
       
             try{
               body = JSON.parse(body);

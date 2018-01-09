@@ -1,14 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Fredoka+One|Kaushan+Script|Lobster|Luckiest+Guy|Righteous|Shrikhand');
-/*
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-*/
 
 body{
   color: #525252;
@@ -20,6 +10,10 @@ body{
 
 .banner.home{
   background: #efefef;
+  background: url('https://placeimg.com/640/480/people');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .tab-content{
@@ -147,19 +141,11 @@ hr{
   margin: 0;
 }
 
-/*.small-font{
-  font-size: 110%;
-}*/
-
 .profile-container{
   overflow: hidden;
 }
 
 .profile{
-  /*background: url('https://placeimg.com/640/480/people');
-  background-size: cover;
-  filter: blur(20px);*/
-
   height: 250px;
   width: 100%;
   position: relative;
@@ -284,17 +270,9 @@ hr{
 }
 
 .p404 h1{
-  /*font-family: 'Bangers', cursive;*/
   font-family: 'Kaushan Script', cursive;
-  /*font-weight: bold;*/
   font-size: 12em;
-
-  /*background-color: #777777;
-  color: transparent;
-  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.945);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-       background-clip: text;*/
+  background-clip: text;*/
 }
 
 .preview-image-upload{
@@ -442,11 +420,6 @@ hr{
   border-radius: 30px 30px 30px 0px;
 }
 
-/*
-  border-radius: 0px 0px 30px 0px;
-  border-radius: 0px 0px 0px 30px ;
-*/
-
 .messager .inner .collapsible-body .chat .mssg.user p{
   float: right;
   border-radius: 30px 30px 0px 30px;
@@ -569,4 +542,8 @@ hr{
 
 .modal .modal-footer{
   border-top: 1px solid rgb(206, 206, 206);
+}
+
+.margin-zero{
+  margin: 0;
 }

@@ -55,12 +55,9 @@ function getCookie(key){
                 if (search_key){
                     if (search_key === key){
                         value = cookie_split[i + 1];
-                        console.log('found: ' + value);
                         return ('value');
                     }
-                    console.log('>> ' + cookie_split[i]);
                 }
-                console.log('<< ' + cookie_split[i]);
                 i++;
             }
         }
@@ -129,12 +126,10 @@ function upload_image(e, session, code, name, preview){
 }
 
 function put_search_results(data){
-    console.log(data);
-
-    itemId('search-results').innerHTML = '<hr>';
+    itemId('search-results').innerHTML = '';
 
     if (!data){
-        itemId('search-results').innerHTML = '<div class="alert">No match</div>';
+        itemId('search-results').innerHTML = '<hr><br><div class="alert">No match</div>';
         return ;
     }
     data.forEach(function(element) {

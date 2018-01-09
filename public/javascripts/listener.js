@@ -59,10 +59,6 @@ $(document).ready(function(){
             else{
                 if (pass.length < 6)
                     error += 'Password should be 6 Characters minimum;';
-                /*
-                if (pass.length > 16)
-                    error += 'Password should be 16 Characters maximum;';
-                */
             }
 
             errors = error.split(";");
@@ -292,7 +288,6 @@ $(document).ready(function(){
                 change_email(session, new_email, token);
             }else
                 itemId('verify_email_token_error').innerHTML = htmlChip('danger', 'Token can not be empty');
-            console.log();
         });
     }
 
@@ -391,11 +386,4 @@ $(document).ready(function(){
             }
         });
     }
-
-    /*if (itemId('')){
-        itemId('').addEventListener('click', function(e){
-
-        });
-    }*/
-
 });
