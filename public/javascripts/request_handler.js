@@ -378,7 +378,7 @@ function    get_chat_request(_url, method, formdata, divId, user_id){
                     */
                     return ;
                 }else{
-                    
+                    $(divId).html('<div class="mssg loading"><p class="text-mute">Send the <b>first message</b></p></div>');
                 }
             }catch(e){
                 //console.log(e);

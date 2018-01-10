@@ -386,4 +386,9 @@ $(document).ready(function(){
             }
         });
     }
+
+    $('.mssg_input').on('keypress', function(e){
+        if (e.which === 13)
+            e.preventDefault();
+    });
 });
